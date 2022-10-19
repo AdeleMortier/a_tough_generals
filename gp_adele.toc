@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}Puzzle: \textit {Tough} and \textit {pretty} predicates seem to differ in their argument structure}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Syntactic differences}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Semantic differences}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Proposal}{5}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Previous accounts of \textit {tough}- and \textit {pretty}-constructions}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Previous approaches to \textit {tough}-constructions}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Contrasting \textit {tough}- and \textit {pretty}-predicates}{7}{subsection.2.2}%
+\contentsline {section}{\numberline {3}A finer-grained semantics for \textit {tough}-predicates}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Basic assumptions about the semantics of infinitival clauses and \textit {tough}-predicates}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Key observation: \textit {tough}-predicates are in need of a ``reference'' argument}{10}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Evidence \#1: pure dummies}{10}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Evidence \#2: ``intention''-inducing adverbs and aspect}{11}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Evidence \#3: idiom chunks}{11}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Evidence \#4: varied fronting strategies}{11}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Fleshing out \textit {tough}}{12}{subsection.3.3}%
+\contentsline {section}{\numberline {4}The status of \textit {it}-\textit {tough}-constructions (iTCs)}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}iTCs are not expletive constructions}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}iTCs have the properties of extraposed constructions}{16}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Extraposition as a potential solution to Bruening's puzzle}{19}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}iTCs have a clausal \textsc {Reference} argument}{21}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Extension to PCs: a reversal in argument structure}{22}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Similarities and differences between \textit {pretty} and \textit {tough}}{22}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}\textit {Pretty}-predicates are properties of ``pure'' individuals, which explains *iPC}{23}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Appendices}{30}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Additional support for \textit {tough} existentially quantifying over propositions}{30}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}A type-mismatch issue in the case of \textit {it}- and clause-fronted TCs}{31}{subsection.6.2}%

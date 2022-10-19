@@ -1,0 +1,1423 @@
+\documentclass[11pt]{article}
+\usepackage[table]{xcolor} % Allow colors to be defined
+
+
+
+
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{stmaryrd}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[linguistics]{forest}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+\usepackage{marvosym}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage{graphicx}
+\graphicspath{ {Figs/} }
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+	\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+% Set max figure width to be 80% of text width, for now hardcoded.
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+% Ensure that by default, figures have no caption (until we provide a
+% proper Figure object with a Caption API and a way to capture that
+% in the conversion process - todo).
+\usepackage{caption}
+\DeclareCaptionLabelFormat{nolabel}{}
+\captionsetup{labelformat=nolabel}
+
+\usepackage{adjustbox} % Used to constrain images to a maximum size 
+
+\usepackage{enumerate} % Needed for markdown enumerations to work
+\usepackage{geometry} % Used to adjust the document margins
+\usepackage{amsmath} % Equations
+\usepackage{amssymb} % Equations
+\usepackage{textcomp} % defines textquotesingle
+% Hack from http://tex.stackexchange.com/a/47451/13684:
+\AtBeginDocument{%
+	\def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+}
+\usepackage{upquote} % Upright quotes for verbatim code
+\usepackage{eurosym} % defines \euro
+\usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+\usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+\usepackage{fancyvrb} % verbatim replacement that allows latex
+\usepackage{grffile} % extends the file name processing of package graphics 
+% to support a larger range 
+% The hyperref package gives us a pdf with properly built
+% internal navigation ('pdf bookmarks' for the table of contents,
+% internal cross-reference links, web links for URLs, etc.)
+\usepackage{hyperref}
+\usepackage{longtable} % longtable support required by pandoc >1.10
+\usepackage{booktabs}  % table support for pandoc > 1.12.2
+\usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+\usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+% normalem makes italics be italics, not underlines
+\usepackage{multirow}
+\usepackage{gb4e}
+\usepackage{pstricks}
+\usepackage{float}
+
+
+% Colors for the hyperref package
+\definecolor{urlcolor}{rgb}{0,.145,.698}
+\definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+\definecolor{citecolor}{rgb}{.12,.54,.11}
+
+% ANSI colors
+\definecolor{ansi-black}{HTML}{3E424D}
+\definecolor{ansi-black-intense}{HTML}{282C36}
+\definecolor{ansi-red}{HTML}{E75C58}
+\definecolor{ansi-red-intense}{HTML}{B22B31}
+\definecolor{ansi-green}{HTML}{00A250}
+\definecolor{ansi-green-intense}{HTML}{007427}
+\definecolor{ansi-yellow}{HTML}{DDB62B}
+\definecolor{ansi-yellow-intense}{HTML}{B27D12}
+\definecolor{ansi-blue}{HTML}{208FFB}
+\definecolor{ansi-blue-intense}{HTML}{0065CA}
+\definecolor{ansi-magenta}{HTML}{D160C4}
+\definecolor{ansi-magenta-intense}{HTML}{A03196}
+\definecolor{ansi-cyan}{HTML}{60C6C8}
+\definecolor{ansi-cyan-intense}{HTML}{258F8F}
+\definecolor{ansi-white}{HTML}{C5C1B4}
+\definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+% The classic matplotlib colors (color-blind-friendly)
+\definecolor{orange}{RGB}{255, 127, 14}
+\definecolor{blue}{RGB}{31, 119, 180}
+\definecolor{green}{RGB}{44, 160, 44}
+\definecolor{red}{RGB}{214, 39, 40}
+\definecolor{purple}{RGB}{148, 103, 189}
+\definecolor{brown}{RGB}{140, 86, 75}
+\definecolor{olive}{RGB}{188, 189, 34}
+\definecolor{grey}{RGB}{150, 150, 150}
+% commands and environments needed by pandoc snippets
+% extracted from the output of `pandoc -s`
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+
+% Additional commands for more recent versions of Pandoc
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+% Define a nice break command that doesn't care if a line doesn't already
+% exist.
+\def\br{\hspace*{\fill} \\* }
+% Math Jax compatability definitions
+\def\gt{>}
+\def\lt{<}
+% Document parameters
+\title{It's \textit{Tough} to be \textit{Pretty}: semantic relatedness between \textit{tough} and \textit{pretty} predicates\footnote{Many thanks to my current advisors Athulya Aravind, Martin Hackl and David Pesetsky for their precious comments and advice on that project; thanks to my office-mate Christopher Baron for his useful English judgments on complex (\textit{tough}!) sentences, and to my colleagues and office-mates Omri Doron, Filipe Kobayashi, Keely New, Margaret Wang for their semantic intuitions; thanks finally to all the people who attended the 04/20/22 LF-reading group at MIT as well as my 04/28/22 talk at GLOW for their insightful questions and comments. All mistakes are mine.}}
+\author{Adèle Mortier (MIT)}
+
+
+
+% Pygments definitions
+
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+	\let\PY@ul=\relax \let\PY@tc=\relax%
+	\let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+	\PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+				\PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+% Exact colors from NB
+\definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+\definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+
+% Prevent overflowing lines due to hard-to-break entities
+\sloppy 
+
+% Setup hyperref package
+\hypersetup{
+	breaklinks=true,  % so long urls are correctly broken across lines
+	colorlinks=true,
+	urlcolor=urlcolor,
+	linkcolor=linkcolor,
+	citecolor=citecolor,
+}
+% Slightly bigger margins than the latex defaults
+
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+\let\ACMmaketitle=\maketitle
+\renewcommand{\maketitle}{\begingroup\let\footnote=\thanks \ACMmaketitle\endgroup}
+
+\makeatletter
+\patchcmd{\@footnotetext}{\setcounter{fnx}{0}}{\renewcommand{\thexnumi}{\roman{xnumi}}}{}{}
+\apptocmd{\@footnotetext}{
+	\@noftnotetrue
+	\renewcommand{\thexnumi}{\arabic{xnumi}}%
+}{}{}
+\makeatother
+
+\newcommand{\Abar}{$\bar{\text{A}}$}
+\newcommand{\bracket}[1]{$[_{\text{#1}}$}
+
+
+\begin{document}
+\sloppy
+\maketitle
+
+\begin{abstract}
+	\textit{Tough}-constructions are a kind of infinitival construction that has been a long-standing puzzle in the syntactic literature \cite{Lees1960, Chomsky1964,Rosenbaum1967}. The main paradox posed by those constructions is that (1) their matrix subject seems to receive a $\theta$-role from the embedded predicate (and not the matrix predicate), while (2) movement of the subject from an embedded position to its final matrix position appears problematic from a theoretical standpoint. In this paper, we propose a novel analysis of \textit{tough}-predicates at the syntax-semantics interface, by contrasting \textit{tough}-constructions with another kind of infinitival construction -- so-called \textit{pretty}-constructions. \textit{Pretty}-constructions, like \textit{tough}-constructions, involve an adjective embedding an infinitival clause; unlike \textit{tough}-constructions however, \textit{pretty}-constructions seem to involve a more straightforward $\theta$-grid, whereby the matrix predicate assigns a \textsc{Theme} $\theta$-role to the matrix subject. We argue that \textit{tough}-constructions differ minimally from \textit{pretty}-constructions, by showing that both kinds of predicates assign a proper $\theta$-role to their subject, but that the exact nature of the $\theta$-role differs: \textsc{Theme} for \textit{pretty} \textit{vs} what we will call \textsc{Reference} for \textit{tough}. This analysis, in addition to providing a more fine-grained semantics for \textit{tough}- and \textit{pretty}- constructions, explains a number of syntactic contrasts between the two kinds of structures, among which the (un)availability of an expletive alternation, and the (un)availability of further embedding of the infinitival clause.
+\end{abstract}
+\newpage
+\tableofcontents
+\newpage
+\section{Puzzle: \textit{Tough} and \textit{pretty} predicates seem to differ in their argument structure}\label{sec:puzzle}
+\textit{Tough} (\ref{ex:tc}) and \textit{pretty} (\ref{ex:pc}) predicates\footnote{It has been noted that some nouns (e.g. \textit{a pain}, \textit{a pleasure}) and verbs (e.g. \textit{frighten}, \textit{amuse}) behave like \textit{tough}-predicates \cite{Lasnik1974,Pesetsky1987, Gluckman2019}, but for the sake of simplicity we will focus on adjectival predicates in that paper.} are two classes of predicates that can take an infinitival clause as complement.
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\textbf{Suzi} is tough to please.\hfill (TC)}\label{ex:tc}
+		\ex[] {\textbf{Those roses} are pretty to look at.\hfill (PC)}\label{ex:pc} 
+	\end{xlist}\label{ex:tc-pc}
+\end{exe}
+\subsection{Syntactic differences}
+We are interested in two syntactic contrasts occurring between those constructions. As first observed by \cite{Lees1960,  Rosenbaum1967} \textit{Tough}-constructions allow both an ``\textit{it}-variant''\footnote{We adopt this theory-neutral denomination instead of the usual ``expletive'' denomination for reasons that will be made clear in Section \ref{sec:it-not-expletive}.} (iTC) such as (\ref{ex:itc}), and a ``fronted'' variant (fTC) such as (\ref{ex:ftc}). In contrast, \textit{pretty}-constructions only allow a ``fronted variant'' (fPC) such as (\ref{ex:fpc}); in other words, they do not allow any ``\textit{it}-variant'', as exemplified in (\ref{ex:ipc}) \cite{Lasnik1974}. We call this restriction *iPC. 
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\textbf{Suzi} is tough to please.\hfill (fTC)}\label{ex:ftc}
+		\ex[] {\textbf{It} is tough to please Suzi.\hfill (iTC)}\label{ex:itc} 
+	\end{xlist}
+	\ex 
+	\begin{xlist}
+		\ex[] {\textbf{Those roses} are pretty to look at.\hfill (fPC)}\label{ex:fpc} 
+		\ex[*] {\textbf{It} is pretty to look at those roses.\hfill (*iPC)}\label{ex:ipc} 
+	\end{xlist}
+\end{exe}\label{ex:it-variant}
+Interestingly, this syntactic contrast extends to fronted infinitival clauses, which happen to be grammatical in \textit{tough}-constructions as shown in (\ref{ex:event-tc}), and yet ungrammatical in \textit{pretty}-constructions, as shown in (\ref{ex:event-pc}). We call those alternative structures \textit{clause-fronted} (``cf'') structures.
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\textbf{To please Suzi} is tough. \hfill (cfTC)}\label{ex:event-tc}
+		\ex[*] {\textbf{To look at those roses} is pretty. \hfill (cfPC)}\label{ex:event-pc}
+	\end{xlist}
+\end{exe}
+The second notable difference between \textit{tough}- and \textit{pretty}-constructions is that the former kind of construction, unlike the latter kind, allows for further embedding within its clausal complement. This ability of \textit{tough}-constructions to exhibit what seems like a long-distance dependency has already been noted by \cite{Longenbaugh2017}. The contrast with \textit{pretty}-constructions is exemplified in (\ref{ex:embedding}) below.
+\begin{exe}
+	\ex
+	\begin{xlist}
+		\ex[] {\textbf{This horse} is tough to convince Johnny to ride.}\label{ex:emb-tc}
+		\ex[*] {\textbf{This painting} is pretty to convince Lucy to look at.}\label{ex:emb-pc}
+	\end{xlist}\label{ex:embedding}
+\end{exe}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		& \textit{tough}-construction & \textit{pretty}-constructions \\ \hline
+		\textit{it}-variant & \cmark & \xmark \\
+		long-distance & \cmark & \xmark \\ \hline
+	\end{tabular}
+	\caption{Two main syntactic contrasts between \textit{tough}- and \textit{pretty}-constructions}
+\end{table}
+\subsection{Semantic differences}
+It is certainly true that both the \textit{tough}- and the \textit{pretty}-class seem to involve subjective predicates of personal taste cross-linguistically \cite{Lasnik1974, Pesetsky1987, Lasersohn2005, Gluckman2019, Bylinina2014}. This is supported by two diagnostics : faultless disagreement and retraction.
+\begin{exe}
+	\ex \textit{(Faultless) Disagreement \cite{Lasersohn2005}}
+	\begin{xlist}
+		\ex[] {\textbf{Suzi} is tough to please. -- Well I disagree!}
+		\ex[] {\textbf{Those roses} are pretty to look at. -- Well I disagree!}
+	\end{xlist}
+	\ex \textit{Retraction \cite{MacFarlane2014}}
+	\begin{xlist}
+		\ex[] {\textbf{Suzi} is tough to please. -- But you said last week she was easy to please! -- Well, I take it back.}
+		\ex[] {\textbf{Those roses} are pretty to look at. -- But you said this morning that they were quite plain ! -- Well, I take it back.}
+	\end{xlist}
+\end{exe}
+
+Yet, the two classes of predicates also exhibit some inherent differences. The \textit{tough}-class on the one hand, seems to contain predicates over events \cite{Gluckman2019}. \textit{Easy}, \textit{impossible}, \textit{important}, \textit{annoying} are a few examples of such predicates. The \textit{pretty}-class on the other hand, contains ``sensory'' predicates such  as \textit{pretty}, \textit{tasty}, \textit{fragrant}, \textit{melodious}, which seem to be contextually restricted to tangible individuals.\footnote{As an illustration, \textit{pretty} seems to mean that some visually-perceptible features of the \textsc{Theme} argument produce some degree of aesthetic satisfaction from the perspective of the \textsc{Judge}. We will come back to the semantics of \textit{pretty}-predicates towards the end of this paper, in Section \ref{sec:pretty-constructions}}\\
+	 
+A potentially related fact is that \textit{pretty} appears to take its subject as a \textsc{Theme} argument (\ref{simple-pretty}), unlike \textit{tough}: as shown in (\ref{simple-tough}), the matrix subject of a \textit{tough}-construction cannot be systematically ascribed the property of being \textit{tough}.\footnote{As previously noted in the \textit{tough}-movement literature (see e.g. \cite{Hornstein2001,Kim1995,Hicks2009}), there are a few cases where the  \textit{tough}-adjective seems to directly modify the matrix subject:
+\begin{exe}
+ 	\ex 
+ 	\begin{xlist}
+ 		\ex[] {Your kids are easy.}
+ 		\ex[] {This problem is difficult.}
+ 	\end{xlist}
+\end{exe}
+But those examples are restricted to a few possible matrix DPs, and seem to be very close in meaning to their most salient counterparts containing an infinitival clause:
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {Your kids are easy to manage.}
+		\ex[] {This problem is difficult to solve.}
+	\end{xlist}
+\end{exe}
+In other words, the \textit{tough}-adjective does not seem to directly refer to any intrinsic property of the matrix subject, but rather to a property of the subject, \textit{relative to a very specific situation or event}.}
+\begin{exe}
+	\ex
+	\begin{xlist}
+		\ex {\textbf{Those roses} are pretty to look at.\\ \textit{\textbf{$\leadsto$ Those roses are pretty.}}\hfill (fPC)}\label{simple-pretty}
+		\ex {\textbf{Suzi} is tough to please.\\ \textbf{\textit{$\not \leadsto$ Suzi is tough.} } \hfill (fTC)} \label{simple-tough}
+	\end{xlist}\label{contrast-tough-pretty}
+\end{exe}
+Therefore, the subject of a fronted \textit{tough}-construction like (\ref{simple-tough}) has been usually assumed to receive its $\theta$-role from the embedded predicate (though see \cite{Lasnik1974, Chomsky1977, Hornstein2001, Kawai2002} for alternative analyses). Under that view, the subject of a fronted-\textit{tough}-construction would play exactly the same role in the sentence as the embedded object of the corresponding \textit{it}-\textit{tough}-construction.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		& \textit{tough}-predicates & \textit{pretty}-predicates \\ \hline
+		predicate over & events & ``pure'' individuals (no events) \\
+		subject's $\theta$-role & none & \textsc{Theme} \\ \hline
+	\end{tabular}
+	\caption{Two main semantic contrasts between \textit{tough}- and \textit{pretty}-constructions}
+\end{table}
+\subsection{Proposal}
+In this paper, we entertain the hypothesis that both \textit{tough}- and \textit{pretty}-subjects are in fact ``thematic''. The paper is constructed as follows. In section \ref{sec:previous-aproaches}, we review previous syntactic approaches to \textit{tough}- and \textit{pretty}-constructions and summarize their predictions regarding the semantics of the constructions at stake. In section \ref{sec:semantics-tough}, we attempt to shed light on the fine-grained semantic properties of \textit{tough}-predicates in the context of fronted \textit{tough}-constructions. We show that those constructions have a more complex argument structure than what was generally assumed, in that \textit{tough}-predicates require a \textsc{Reference} argument, i.e. an individual that is the drive of the \textit{toughness} judgment. In section \ref{sec:it-not-expletive}, we extend the analysis to \textit{it}-\textit{tough}-constructions by relating them to clause-fronted \textit{tough}-constructions. Section \ref{sec:pretty-constructions} attempts to explain the key similarities and differences between \textit{tough}- and \textit{pretty}-predicates. More precisely, we establish in that Section that \textit{tough} and \textit{pretty} take similar semantic arguments (\textsc{Theme} and \textsc{Reference}). Crucially however, we argue that those arguments are associated to different syntactic positions (matrix subject \textit{vs} complement clause) in each construction. We will relate this key difference between \textit{tough} and \textit{pretty} to the structural contrasts regarding the (un)availability of an \textit{it}-variant, and the (im)possibility of long-distance dependencies. We conclude by suggesting that our theory may extend to other (sub)classes of predicates with infinitival complements, offering a more unified picture of what those constructions are, and do. Among those related constructions are \textit{rare}-constructions \cite{Fleisher2015}, which were previously argued to form a subcategory of \textit{tough}-constructions, coming with specific semantic restrictions. So-called \textit{rude}-constructions \cite{Stowell1991}, form another interesting category, which seems to share semantic properties with \textit{pretty}-constructions and syntactic properties with \textit{tough}-constructions.
+
+\section{Previous accounts of \textit{tough}- and \textit{pretty}-constructions}\label{sec:previous-aproaches}
+\subsection{Previous approaches to \textit{tough}-constructions}\label{app:2-camps}
+\textit{Tough}-constructions have been a very debated topic since the early days of generative syntax (see e.g. \cite{Chomsky1964} and \cite{Rosenbaum1967}). Those constructions have been see as puzzles for syntactic theory, primarily because their subject does not seem to entertain any clear semantic relationship with the matrix predicate, unlike raising or control constructions. Rather, the matrix subject seems to be the \textsc{Patient} of the embedded predicate, which suggests that it starts its life as the object of the embedded clause. This observation is clarified in (\ref{ex:tough-theta-assignment}), repeated from (\ref{simple-tough}) below.
+\begin{exe}
+	\ex
+	\begin{xlist}
+		\ex {\textbf{Suzi} is tough to please.\\ \textbf{\textit{$\not \leadsto$ Suzi is tough.}\\ \textbf{\textit{$ \leadsto$ Suzi is the (hypothetical) \textsc{Patient} of a pleasing-event.}} } \hfill (fTC)} \label{simple-tough}
+	\end{xlist}\label{ex:tough-theta-assignment}
+\end{exe}
+The existence of a dependency between the matrix subject and the embedded object position is supported by a series of diagnostics for A (cf. \cite{Lasnik1991,Mulder1992,Ruys2000}), but also \Abar-movement (cf. \cite{Chomsky1977,Chomsky1982,Rezac2006}) targeting the matrix subject -- which suggests that \textit{tough}-movement, if it exists, constitutes an instance of Improper Movement \cite{Chomsky1986}. This all leads to the following paradox:\\
+
+\begin{center}
+	\fbox{\begin{minipage}{.8\linewidth}
+		\emph{\textbf{The paradox of \textit{tough}-constructions}: the \textit{tough}-subject seems to originate in the embedded clause, but movement from the embedded object position to the matrix subject position appears ``Improper''.}
+\end{minipage}}
+\end{center}
+
+
+	
+Previous approaches to \textit{tough}-constructions tried to contend with this paradox in various ways. Those approaches have been traditionally divided into two groups: \textsc{Long-Movement} approaches and \textsc{Base-Generation} approaches.\\
+
+\textsc{Long-Movement} approaches \cite{Rosenbaum1967, Postal1971, Brody1993, Hornstein2001, Hicks2009,Hartman2011} on the one hand, assume that the matrix subject originates in the embedded clause (complement position). In earlier versions of this approach, the subject is assumed to \Abar-move to the edge of the embedded clause (Spec-CP) before undergoing A-movement to its final matrix position (Spec-TP). This is illustrated in Figure \ref{fig:long-movement-view}. Earlier \textsc{Long-movement} approaches successfully explain the apparent thematic properties of the \textit{tough}-subject, namely, that it is a \textsc{Patient} of the embedded verb. Additionally, they capture the relatedness between fronted and \textit{it}-\textit{tough}-constructions, the latter being analyzed as \textit{tough}-constructions where movement did not take place, leading instead to expletive insertion in the subject position. Those earlier accounts however, cannot explain why the matrix subject escapes accusative case assignment, and, more importantly perhaps, have to posit an exception to the Ban on Improper Movement \cite{Chomsky1973,Chomsky1981,May1979}, i.e. the constraint according to which an element cannot A-move from an \Abar~ position\footnote{This constraint is needed to explain the ungrammaticality of sentences such as (\ref{ex:improper}):
+\begin{exe}
+	\ex[*] {Who$_1$ was believed \bracket{CP} t$_1$ (that) \bracket{TP} t$_1$ went to the party $]]$?}\label{ex:improper}
+\end{exe}
+Whereby a \textit{wh}-word \Abar-moves to the embedded Spec-CP position, before A-moving to the matrix Spec-TP.}. Some more recent \textsc{Long-Movement} approaches (\cite{Hicks2009,Longenbaugh2017} i.a.) manage to circumvent Improper Movement (while still predicting the right kind of A and \Abar properties), but at the cost of positing the existence of a heavier syntactic machinery (e.g. smuggling, composite probes...).\\
+
+\textsc{Base-Generation} approaches \cite{Ross1967, Lasnik1974, Chomsky1977, Rezac2006, Fleisher2015, Keine2017} on the other hand, posit that the \textit{tough}-subject is base-generated in the matrix and binds (or agrees with) a null operator that has moved from the embedded complement position to the edge of the embedded clause (Spec-CP). This is illustrated in Figure \ref{fig:base-generation-view}. \textsc{Base-generation} approaches provide a straightforward solution to the problem of case and Improper Movement, for the element that undergoes \Abar-movement (a null operator) is distinct from the element that undergoes A-movement (the matrix subject). Those accounts however, cannot provide a straightforward explanation of the fronted-\textit{it} alternation; the only way around it seems to consist in positing two separate lexical entries for \textit{tough} \cite{Keine2017}.
+Moreover, this family of accounts has to make the somewhat \textit{ad hoc} assumption that the embedded $\theta$-role is \textit{transmitted} from the embedded null operator to the matrix subject, in order to explain the apparent $\theta$-assignment pattern of \textit{tough}-constructions. This transmission process is supposed to ensure that the matrix subject fulfills a \textsc{Patient} $\theta$-role in the embedded clause, instead of its expected \textsc{Agent} $\theta$-role in the matrix clause.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[H]{.45\linewidth}
+		\centering
+		\scalebox{.8}{
+			\begin{forest}
+				[TP [Suzi,name=tgt2] [... [] [AP [] [A' [tough] [CP [\sout{Suzi},name=tgt1] [TP[] [...  [please,name=theta] [DP [\sout{Suzi}, name=src]]]]]]]]]
+				\draw[-stealth] (src) to[out=south west,in=south west] node[pos=0.7,xshift=-5mm]{\Abar} (tgt1);
+				\draw[-stealth] (tgt1) to[out=south west,in=south west] node[pos=0.5,xshift=-5mm]{A} (tgt2);
+				\draw[->,dashed] (theta) to[out=south,in= west] node[pos=0.3,xshift=3.5mm]{$\theta$} (src);
+		\end{forest}}
+		\caption{The \textsc{Long-Movement} view}\label{fig:long-movement-view}
+	\end{subfigure}
+	\begin{subfigure}[H]{.45\linewidth}
+		\centering
+		\scalebox{.8}{
+			\begin{forest}
+				[TP [Suzi,name=tgt2] [... [] [AP [\sout{Suzi},name=src2] [A' [tough] [CP [OP,name=tgt1] [TP[] [...  [please,name=theta] [DP [\sout{OP}, name=src1]]]]]]]]]
+				\draw[-stealth] (src1) to[out=south west,in=south west] node[pos=0.7,xshift=-5mm]{\Abar} (tgt1);
+				\draw[-stealth] (src2) to[out=south west,in=south west] node[pos=0.5,xshift=-5mm]{A} (tgt2);
+				\draw[->,dashed] (tgt1) to[out=south west,in=south west] node[pos=0.5,xshift=3.5mm]{$\theta$} (src2);
+				\draw[->,dashed] (theta) to[out=south,in= west] node[pos=0.3,xshift=3.5mm]{$\theta$} (src1);
+		\end{forest}}
+		\caption{The \textsc{Base-Generation} view}\label{fig:base-generation-view}
+	\end{subfigure}
+	\caption{Two views on $\theta$-assignment in TCs}
+\end{figure}
+
+Table \ref{tab:accounts-predictions} below summarizes the strength and weaknesses of the two families of approaches to \textit{tough}-constructions. Crucially here, the performance of the two approaches w.r.t. the ``$\theta$-assignment'' criterion is based on the traditional and widely accepted claim that the \textit{tough}-subject is the \textsc{Patient} of the embedded predicate, and has nothing to do with the matrix \textit{tough}-predicate from a semantic point of view.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		& \textsc{Long-Movement} & \textsc{Base-generation} \\ \hline
+		$\theta$-assignment & \cmark & \cmark modulo $\theta$-transmission \\
+		fronted-\textit{it} alternation & \cmark & \xmark \\
+		case mismatch & \xmark\footnotemark & \cmark \\
+		Improper Movement & \cmark modulo smuggling, composite probes... &  \cmark \\ \hline
+	\end{tabular}
+\caption{The two families of approaches and how they deal with key features of the \textit{tough}-construction}\label{tab:accounts-predictions}
+\end{table}
+\footnotetext{This \xmark does not apply to the smuggling account provided by \cite{Hicks2009}, since under that analysis, a null-operator, ``smuggling'' superstructure, and not the ``smuggled'' matrix subject itself, is the target of accusative case within the embedded clause.}
+
+\subsection{Contrasting \textit{tough}- and \textit{pretty}-predicates}\label{sec:tough-pretty}
+As section \ref{app:2-camps} hopefully made clear, \textit{tough}-constructions have been considered as a puzzle in themselves for a long time. Therefore, they have rarely been compared to other similar adjectival constructions, until recently with \cite{Brillman2015} (comparing \textit{tough}-constructions to gapped-degree phrases) and \cite{Keine2017}, who first established a clear and formal parallel between \textit{tough}- and \textit{pretty}-constructions. As previously mentioned, \textit{pretty}-constructions seem to exhibit regular $\theta$-assignment (the \textit{pretty}-subject is a \textsc{Theme} of the \textit{pretty}-predicate) and do not involve any fronted-\textit{it}-alternation. Therefore, those constructions seem to be best analyzed under a \textsc{Base-Generation} approach.\\
+
+
+The main goal of \cite{Keine2017} was to argue against a \textsc{Long-Movement} approach to \textit{tough}-constructions, by comparing \textit{tough}-constructions to the uncontroversially \textsc{Base-Generated} \textit{pretty}-constructions. In particular, they showed that both constructions were subject to so-called \textit{defective intervention effects} \cite{Hartman2011}, which were previously seen as a signature of \textsc{Long-Movement} in the context of the \textit{tough}-construction. \cite{Keine2017} claim that this constraint results from a type-mismatch issue which can only arise in (\textsc{Base-Generated}) fronted \textit{tough}- and \textit{pretty}-constructions.\footnote{Fronted \textit{tough}- and \textit{pretty}-constructions are both subject to some kind of PP-intervention that is due to the presence of a null operator in the embedded clause of both structures, causing a semantic type-mismatch issue with the PP. \textit{It}-\textit{tough}-constructions, which do no seem to lead to the same kind of PP-intervention effect, are assumed to be devoid of any null operator in their embedded clause. This allowed \textit{it}-\textit{tough}-constructions to escape the type-mismatch problem that arises with PP-insertion in the fronted structures.}This analysis led Keine and Poole to define two lexical entries for \textit{tough}: one in the context of a fronted construction (Eq. \ref{eq:kp-tough-front}), and one in the context of an \textit{it}-construction (Eq. \ref{eq:kp-tough-it}). In other words, \textit{tough} was considered to be lexically ambiguous. Crucially, the two variants of \textit{tough} differ in their type signature: the variant that appears in fronted constructions takes two main arguments, the embedded clause and the matrix subject; while the variant that appears in \textit{it}-constructions only applies to the embedded clause.
+	
+
+	\begin{equation}
+	\llbracket\text{tough}_{\text{\textsc{Fronted}}}\rrbracket^j = \lambda Q_{\langle e \langle st \rangle\rangle}. \ \lambda x_e. \ \lambda w_s. \ \forall (w', j') \in \mathcal{R}_w^j. \ \text{\textsc{Tough}}(w')(j')(\llbracket Q \rrbracket^{j'}(x))
+	\end{equation}\label{eq:kp-tough-front}
+
+	\begin{equation}
+	\llbracket\text{tough}_{\text{\textsc{It}}}\rrbracket^j = \lambda p_{\langle st \rangle}. \ \lambda w_s. \ \forall (w', j') \in \mathcal{R}_w^j. \ \text{\textsc{Tough}}(w')(j')(\llbracket p \rrbracket^{j'})
+	\end{equation}\label{eq:kp-tough-it}
+
+	
+The entry for \textit{pretty} on the other hand, was not explicitly defined, but was assumed to have the same type signature as the ``fronting'' \textit{tough}. The exact semantics the authors give to \textit{pretty}-predicates remains relatively unclear however. In particular, the main semantic semantic contrast between \textit{tough} and \textit{pretty}, namely that \textit{pretty} primarily applies to the matrix subject (an individual), while \textit{tough} primarily applies to the event denoted by the embedded clause, is not extensively discussed in the paper.\\
+	
+In the following sections, we will argue against the lexical ambiguity view of \textit{tough}-predicates entertained by \cite{Keine2017}. We will show that \textit{tough} in fact takes its matrix subject as argument in both fronted and \textit{it}-constructions. We will additionally suggest that this argument is a proper thematic argument of the \textit{tough}-predicate. Regarding \textit{pretty}-predicates, we will attempt to extend and clarify Keine and Poole's view, by suggesting that \textit{pretty} takes the same kind of thematic argument as \textit{tough}, but, crucially, in a different order. 
+		
+
+\section{A finer-grained semantics for \textit{tough}-predicates}\label{sec:semantics-tough}
+\subsection{Basic assumptions about the semantics of infinitival clauses and \textit{tough}-predicates}
+We assume with \cite{Kratzer2006, Moulton2009, Moulton2015} that embedded clauses denote ``properties of individuals with propositional content'' (type $\langle e \langle st \rangle\rangle$). This claim comes from the general observation that embedded clauses distribute like DPs. First, it has been noted that
+attitude verbs like \textit{believe} can combine with either DPs (cf. (\ref{ex:believe-dp})) or CPs (cf. (\ref{ex:believe-cp})).
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {Jotaro believes \bracket{DP} Jolyne's story $]$.}\label{ex:believe-dp}
+		\ex[] {Jotaro believes \bracket{CP} that Jolyne tells the truth $]$.}\label{ex:believe-cp}
+	\end{xlist}
+\end{exe}
+Second, \textit{that}- and \textit{for}-clauses can be equated with DPs:
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\bracket{DP} The fact $]$ is \bracket{CP} that Jolyne tells the truth $]$.}
+		\ex[] {\bracket{DP} The challenge $]$ is \bracket{CP} for Jolyne to escape $]$.}
+	\end{xlist}
+\end{exe}
+These data make perfect sense as soon as both DPs and CPs denote properties; and motivates an analysis of CPs whereby the C-head (\textit{that}, \textit{for}, or a silent counterpart thereof), changes a proposition (the clause itself) into a ``property of individuals with propositional content''. This is operationalized  in the equations below.
+\begin{align*}\tag{\footnotesize\text{\cite{Kratzer2006}}}
+	\llbracket \text{C} \rrbracket &= \lambda P_{st}. \ \lambda x_e. \ \lambda w_s. \ \text{\textsc{Content}}(x)(w) = P \\
+	\text{\textsc{Content}}(x)(w) &= \lbrace w' \ | \ w' \text{ is compatible with the intentional content of } x \text{ in } w \rbrace
+\end{align*}
+
+More specifically in our case, and following \cite{Gluckman2021}, we make the assumption that infinitival clauses compatible with \textit{tough} or \textit{pretty} are properties of \textit{events} (type $\nu$) with propositional content, where events are taken to be a subtype of individuals. For instance:
+
+\begin{equation}
+	\llbracket \text{for Joseph to please Suzi} \rrbracket = \lambda v_\nu. \lambda w_s. \ \textsc{Content}(v)(w) = \lbrace w' \ | \  \text{Joseph pleases Suzi in } w' \rbrace
+\end{equation}
+
+The infinitival clause is expected to compose with \textit{tough} \textit{via} Predicate Modification (PM) \cite{Moulton2015,Gluckman2021}. Following \cite{Pesetsky1987, Lasersohn2005} and \cite{Keine2017}, we also postulate that \textit{tough} and \textit{pretty} predicates are judge-dependent. We define a tentative entry for \textit{tough} under those assumptions (to re revised in Section \ref{sec:reference-argument}):
+
+
+\begin{equation*}
+	\llbracket\text{tough}\rrbracket^j = \lambda v_\nu . \ \lambda w_s . \ \text{\textsc{tough\footnotemark}}(v)(w)(j)
+\end{equation*}
+
+\footnotetext{\textsc{Tough}(v)(w)(j) is a shorthand for \textit{v is tough in w according to j}. This clearly has to be fleshed out. In fact, \textsc{Tough} most likely contains another layer of modality.}
+
+Below is a sketch of the derivation of \textit{Joseph is tough for Suzi to please}. We assume for now that \textit{tough} does not take the matrix subject as argument. We also assume that the embedded object position is not filled with a gap (meaning, a $\lambda$-abstracted element), but rather with an element co-referential with the matrix subject. As a result, the sentence \textit{Joseph is tough for Suzi to please} is for now seen as equivalent to \textit{It is tough for Suzi to please Joseph}. Lastly, the first argument that is passed to \textit{tough} is the judge-argument, which for simplicity is assumed to be coreferential with the embedded subject. 
+\begin{center}
+	$\left\llbracket \begin{minipage}{.39\linewidth}
+\begin{forest}[[\textcolor{grey}{Joseph}$_j$] [{
+	$\langle \nu \langle st \rangle \rangle$\\(PM)} [{$\langle \nu \langle st \rangle \rangle$\\tough}][{$\langle \nu \langle st \rangle \rangle$}[{for Suzi to please x$_j$\footnotemark}, roof]]]] \end{forest}
+\end{minipage}\right\rrbracket$
+\end{center}
+\footnotetext{We use a theory-neutral variable name here, but $x_j$ should be seen as either a trace or a null operator of some sort.}
+\begin{align*}
+	&\stackrel{PM}{=} \lambda v_\nu. \ \lambda w_s. \ \left(\llbracket \text{tough} \rrbracket^S(v)(w) \wedge \llbracket \text{for Suzi to please x$_j$} \rrbracket^S(v)(w) \right)\\
+	&\stackrel{FA+\beta}{=} \lambda v_\nu. \ \lambda w_s. \ \left( \textsc{Tough}(v)(w)(Suzi) \wedge \llbracket \text{for Suzi to please x$_j$} \rrbracket^S(v)(w) \right)\\
+	&\stackrel{FA+\beta}{=} \lambda v_\nu. \ \lambda w_s. \ \text{\textsc{Tough}}(v)(w)(Suzi) \wedge \text{\textsc{Content}}(v)(w) =  \lbrace w' \ | \ \text{Suzi pleases Joseph in } w' \rbrace\\
+\end{align*}
+After \textit{tough} has combined with the infinitival clause through PM (resulting in a $\langle \nu \langle st \rangle \rangle$ type), an existential layer $\lambda Q_{\langle\nu\langle st \rangle\rangle}. \ \lambda w_s. \ \exists v_\nu. \ Q(v)(w)$ guarantees that the sentence has type $\langle s, t\rangle$. In the next section, we argue that there is in fact something more to this, i.e., \textit{tough} is in need of an additional semantic argument.
+
+\subsection{Key observation: \textit{tough}-predicates are in need of a ``reference'' argument}\label{sec:reference-argument}
+We focus in this section on fronted \textit{tough}-constructions, such as (\ref{ex:tc}), repeated below.
+\begin{exe}
+	\ex[] {\textbf{Suzi} is tough to please.}\label{ex:tc-repeated}
+\end{exe}
+\textsc{Long-Movement} accounts straightforwardly predict that the matrix subject of \ref{ex:tc-repeated} should receive its $\theta$-role from the embedded predicate before moving to its final position. So, under that line of analysis \textit{Suzi} is expected to be the \textsc{Patient} of \textit{please}. To yield the same sort of prediction, \textsc{Base-Generation} approaches generally posit that \textit{Suzi} receives its $\theta$-role \textit{via} binding or agreement with a null operator within the embedded clause, which itself received its $\theta$-role from \textit{please}.
+
+A further prediction of both accounts is the following: fronting various elements from the embedded clause (e.g. an object, a goal, an adjunct...) in a \textit{tough}-construction should not lead to differences in interpretation. We claim here that this is not true: even if \textit{tough} does not take the matrix subject as a somewhat standard \textsc{Theme} or \textsc{Experiencer} argument, we claim that \textit{tough} remains sensitive to the nature of the subject, in a very specific way that cannot be cashed out by traditional $\theta$-roles.
+
+\subsubsection{Evidence \#1: pure dummies}
+A first piece of evidence comes English dummy elements, such as existential \textit{there} \cite{Chomsky1981} and ``weather'' \textit{it}. As shown in (\ref{dummy-extracted-tc}), those vacuous elements are not acceptable as \textit{tough}-subjects (examples taken from \cite{Bayer1990})\footnote{Note that in (\ref{dummy-extracted-tc}) the presence of an intermediate raising-to-object predicate (\textit{believe}) guarantees that ungrammaticality is not caused by the embedded gap being in a subject position -- as subject-gap TCs are notoriously ungrammatical.}
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[*] {\textbf{There} would be difficult to believe  to be a party tonight. \hfill \textit{there}-TC}
+		\ex[*] {\textbf{It} would be difficult to believe  to be raining. \hfill ``weather'' \textit{it}-TC}
+	\end{xlist}
+	\label{dummy-extracted-tc}
+\end{exe}
+However, as shown in (\ref{dummy-extracted-rc}), those elements seem fine\footnote{It has been argued that such constructions were not necessarily perfect, even when the extracted element is an argument \cite{Nanni1978}, which suggests some inherent difficulty there. We still think that the contrast between (\ref{dummy-extracted-tc}) and (\ref{dummy-extracted-tc}) is real however, as (\ref{dummy-extracted-tc}) sounds far worse than (\ref{dummy-extracted-tc}).} when combined with a raising predicate (keeping the embedding complexity constant).
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\textbf{There} seems to be believed  to be a party tonight. \hfill \textit{there}-RC}
+		\ex[] {\textbf{It} seems to be believed  to be raining. \hfill ``weather'' \textit{it}-RC}
+	\end{xlist}
+	\label{dummy-extracted-rc}
+\end{exe}
+This contrast is unexpected if \textit{tough}-predicates, just like raising-to-subject predicates, are not thematically linked to their subject.\footnote{At that point, one could argue that iTCs represent an obvious counter-example to the current argument, as those structures seem to exhibit an expletive \textit{it}, and are yet perfectly grammatical. We will come back to this particular case at length in the next section, Section \ref{sec:it-not-expletive}.}
+\subsubsection{Evidence \#2: ``intention''-inducing adverbs and aspect}
+Another case where \textit{tough}-predicates do not show the same restrictions as \textit{raising}-predicates has to do with explicit intention or volition on the part of the matrix subject. The use of the progressive, or of an adverb such as \textit{purposely} suggest that the matrix subject \textit{intentionally} realizes the matrix predicate \cite{Lasnik1974,Hukari1990}. Therefore, it is no surprise that the progressive or \textit{purposely}-type adverbs be banned from sentences with an inanimate matrix subject (\ref{ex:purposely-inanimate}). In the case of \textit{animate} matrix subject however, a contrast arises between \textit{tough}-constructions and raising constructions: \textit{tough}-constructions allow for the progressive or \textit{purposely}-type adverbs (\ref{ex:purposely-animate-tough}); while raising constructions do not (\ref{ex:purposely-animate-raising}). This discrepancy would be difficult to explain if the matrix subject was considered non-thematic in \textit{both} \textit{tough}- and raising constructions.
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[*] {\textbf{This package} is $\lbrace$being/purposely$\rbrace$ \textit{tough} to send to Lisa. }
+		\ex[*] {\textbf{This package} is $\lbrace$being/purposely$\rbrace$ \textit{likely} to belong to Lisa.}
+	\end{xlist}\label{ex:purposely-inanimate}
+	\ex
+	\begin{xlist}
+		\ex[] {\textbf{Lisa} is $\lbrace$being/purposely$\rbrace$ \textit{tough} to send this package to.}\label{ex:purposely-animate-tough}
+		\ex[*] {\textbf{Lisa} is $\lbrace$being/purposely$\rbrace$ \textit{likely} to send this package.}\label{ex:purposely-animate-raising}
+	\end{xlist}
+\end{exe}
+\subsubsection{Evidence \#3: idiom chunks}
+The possibility to front an idiom chunk in a \textit{tough}-construction has been debated \cite{Lasnik1974,Rezac2006,Hicks2009}. As observed by \cite{Longenbaugh2017}, idioms chunk for which an independent (although not fully literal) meaning can be found sound better as \textit{tough}-subjects than purely metaphorical ones. The following minimal pair, taken from \cite{Longenbaugh2017}, illustrates this claim: in (\ref{ex:good-tough-idiom}), the subject is perceived as less metaphorical than in (\ref{ex:bad-tough-idiom}).
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\textbf{That habit} will be hard to kick.}\label{ex:good-tough-idiom}
+		\ex[*] {\textbf{The bucket} will be easy to kick}\label{ex:bad-tough-idiom}
+	\end{xlist}\label{ex:tough-idioms}
+\end{exe}
+The fact that the grammaticality of (\ref{ex:good-tough-idiom}) and  (\ref{ex:bad-tough-idiom}) seems to be tied to the semantic interpretation of the \textit{tough}-subject is unexpected under traditional accounts of \textit{tough}-constructions, which generally predict that both (\ref{ex:good-tough-idiom}) and (\ref{ex:bad-tough-idiom}) should exhibit the same degree of grammaticality (depending on whether idioms are allowed to reconstruct in \textit{tough}-constructions).\footnote{We are not discussing this question here. But assuming that the idiom can be interpreted downstairs, we will propose a way to tease apart (\ref{ex:good-tough-idiom}) and (\ref{ex:bad-tough-idiom}) in the next section.}
+
+
+\subsubsection{Evidence \#4: varied fronting strategies}\label{ex:fronting-strategies-tough}
+A last piece of evidence comes from the examination of the following sentences:
+\begin{exe}
+	\ex
+	\begin{xlist}
+		\ex[] {Joseph: \textbf{This package} is tough to send to Lisa.\hfill (object-fTC)}\label{object-extracted-tough}
+		\ex[]{Joseph: \textbf{Lisa} is tough to send this package to.\hfill (goal-fTC)}\label{goal-extracted-tough}
+	\end{xlist}\label{double-object-tough-sc1}
+\end{exe}
+Along with the following two Scenarios:
+\begin{center}
+ 	\fbox{
+ 		\begin{minipage}{.8\linewidth}
+ 			\underline{\textbf{Scenario 1}:} \textit{Joseph has to send a very big and heavy package to Lisa, who lives in the same country as Joseph (so that if the package was a simple letter, Joseph would have no problem sending it to Lisa). Joseph complains to Suzi about this.}
+ 		\end{minipage}
+ 	}
+\end{center}
+	\begin{center}
+		\fbox{
+			\begin{minipage}{.8\linewidth}
+ 			\underline{\textbf{Scenario 2}:} \textit{Joseph has to send a small and lightweight package to Lisa, who lives in an isolated place in a remote island, without any nearby post office. Joseph complains to Suzi about this.}
+		\end{minipage}
+	}
+\end{center}
+We argue that the Scenarios compatible with those two slightly different fTCs depend on what the matrix subject actually is. Given \textbf{Scenario 1}, the utterance in (\ref{object-extracted-tough}) seems acceptable, while (\ref{goal-extracted-tough}) does not. With \textbf{Scenario 2}, the pattern gets reversed.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		& \textbf{Scenario 1} & \textbf{Scenario 2} \\ \hline
+		(\ref{object-extracted-tough}) & \cmark & ? \\
+		(\ref{goal-extracted-tough}) & \xmark & \cmark \\ \hline
+	\end{tabular}
+\end{table}
+
+In both (\ref{object-extracted-tough}) and
+(\ref{goal-extracted-tough}), some salient property of the matrix subject (\textit{being bulky}, \textit{living far away}...) seems to cause the sending event to be ``hard''.\footnote{This might also explain why (\ref{object-extracted-tough}) is only mildly unacceptable in the context of \textbf{Scenario 2}: \textit{being far from Lisa} is a property applicable to the package that, despite not being	very salient, can make the sending event hard as well. In \textbf{Scenario 1} on the other hand, it appears nearly impossible to find a salient property of Lisa that would cause the \textit{sending}-event to be tough, hence the plain infelicity of (\ref{goal-extracted-tough}) in that context.} This phenomenon has already been discussed in the past (\cite{Bayer1990,Goh2000b,Grover1995,Hukari1990,Kim1995,Schachter1981}). Not all accounts however, linked it to a direct semantic relationship between the subject and the \textit{tough}-predicate. \footnote{\cite{Goh2000b} for instance, argues that the effect is pragmatic due to its sensitivity to the context; \cite{Grover1995} assumes in a HPSG framework that the relationship between the \textit{tough}-subject and the \textit{tough}-predicate is mediated by a separate operator, \textsc{Enable}.} Beside, the accounts that ended up establishing such a link did not provide the relevant lexical entry for \textit{tough} -- which is what we will do in the next section.\\
+
+Coming back briefly to idiom chunks, the contrast in (\ref{ex:tough-idioms}) now appears less mysterious. (\ref{ex:good-tough-idiom}), can be easily understood as ``there is a property about this habit that I have, that makes it hard to kick''. (\ref{ex:bad-tough-idiom}) on the other hand, cannot be understood as ``the is a property of the bucket, that makes it hard to kick''. The contrast is crucially made possible by the sensitivity of the \textit{tough}-predicate to the (more or less) idiomatic subject. 
+
+
+\subsection{Fleshing out \textit{tough}}
+We now update the lexical entry of \textit{tough}, taking into account the fact that it takes its subject as a semantic ``reference'' argument, understood as the causer of the toughness of the situation denoted by the embedded clause.
+\begin{align*}
+	\llbracket\text{tough}\rrbracket^j = &\lambda r_e . \ \lambda v_\nu . \ \lambda w_s . \\
+	&\exists P_{\langle e \langle st \rangle \rangle}: P(r)(w) \wedge \forall w'_s:  B^{j}_{w}(w') \wedge P(r)(w') \wedge \textsc{Content}(v)(w) = \textsc{Content}(v)(w').\\
+	&\text{\textsc{Tough}}(j)(v)(w')
+\end{align*}
+\textit{Tough} is parametrized by a \textsc{Judge} $j$ and takes as argument a \textsc{Reference} $r$ (type $e$), to return a property of events with propositional content (as already claimed by \cite{Gluckman2021}). More precisely, \textit{tough} returns the set of events $v$ such that some property $P$ that is true of $r$ in the evaluation world ``causes'' $j$ to judge the toughness of $v$. This causality relationship between $P$ and the toughness judgment of $j$ is operationalized \textit{via} quantification over all the relevantly accessible worlds $w'$ (from the point of view of $j$) where $P$ still holds of $r$. In those worlds, $j$ judges $v$ to be tough ($\textsc{Tough}(j)(v)(w')$).\\
+
+One could then reasonably ask about the exact meaning of $\textsc{Tough}(j)(v)(w')$. Crucially at that point of the logical expression, we cannot state that $j$ actually \textit{experiences} the toughness of $v$, because \textit{tough}-statements are can be produced about events that have not been completed in the actual world, and sometimes not even in the ``judgment'' worlds. (\ref{ex:tough-not-happened}) illustrates this characteristic.
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {Goldbach's conjecture is tough to prove. In fact, no one managed to prove it so far and I doubt anyone will in the near future.}
+		\ex[] {This book is easy to read. Even if I have not read it, I know the author well and can assure you will have a nice time.}
+	\end{xlist}
+\end{exe}\label{ex:tough-not-happened}
+
+As a result, we think that $\textsc{Tough}(j)(v)(w')$ should further quantify over worlds that are almost exactly similar to the given ``judgment'' world (in particular, $P$ is still expected to hold of $r$ in those words), but where $v$ actually takes place. This set of worlds has to be judged as ``small'' (probably w.r.t. to those where the event does \textit{not} happen) by the judge.
+
+
+
+\begin{align*}
+	\textsc{Tough}(j)(v)(w') = &\forall w'' : \textsc{Occurs}(v)(w')(w'') \wedge  \ \text{$j$ has a hard time completing $v$} \\
+	\textsc{Occurs}(v)(w')(w'') =& \textsc{Content}(v)(w')(w'')
+\end{align*}
+
+
+
+
+Under those assumptions, (\ref{object-extracted-tough}) will be true iff there is a \textit{sending-this package-to-Lisa} event $v$ and a property $P$ that holds of the package, such that in all relevantly accessible worlds (from Joseph's point of view), Joseph judges $v$ to be tough. Below is a more formal derivation of (\ref{object-extracted-tough}).
+
+\iffalse
+	\begin{align*}
+		\llbracket (\ref{object-extracted-tough})  \rrbracket
+		&\stackrel{PM}{=} \exists v_\nu. \ \lambda w_s. \ \llbracket \text{tough} \rrbracket\llbracket \text{J$_j$} \rrbracket\llbracket \text{this package} \rrbracket(v)(w) \wedge \llbracket \text{for PRO$_j$ to send this package to L} \rrbracket(v)(w)\\
+		&\stackrel{PM}{=} \exists v_\nu. \ \lambda w_s. \ \llbracket \text{tough} \rrbracket\llbracket \text{J} \rrbracket\llbracket \text{this package} \rrbracket(v)(w) \wedge \text{\textsc{Content}}(v)(w) = \text{J sends this package to L} \rrbracket(v)(w)\\
+		&\stackrel{FA}{=} \lambda e. \ \lambda w. \ \llbracket \text{tough} \rrbracket (Suzi)(e)(w) \wedge \llbracket \text{Suzi please Joseph} \rrbracket(e)(w)\\
+		&\stackrel{FA}{=} \lambda e. \ \lambda w. \ \text{\textsc{Tough}}(e)(w)(Suzi) \\
+	\end{align*}\fi
+
+\begin{figure}[H]
+	\centering
+	\scalebox{.87}{
+	\begin{forest}
+		[{$\lambda w_s. \ \exists v_\nu.$ \\ $\exists P_{\langle e \langle st\rangle\rangle} : P(r)(w) \wedge \forall w'_s:  B^{J}_{w}(w') \wedge P(r)(w'). \textsc{Tough}(J)(v)(w') \wedge$\\
+			$\textsc{Content}(v)(w) = \lambda w'_s. \ \text{Joseph sends the package to Lisa in } w'$\\$\langle st\rangle$}[$\lambda Q_{\langle\nu\langle st\rangle\rangle}. \ \lambda w_s. \ \exists v_\nu. \ Q(v)(w)$] [[{$\lambda v_\nu. \ \lambda w_s.$ \\ $\exists P_{\langle e \langle st\rangle\rangle} : P(r)(w) \wedge$ \\ $\forall w'_s:  B^{J}_{w}(w') \wedge P(r)(w').$ \\ $\textsc{Tough}(J)(v)(w')$\\$\langle\nu\langle st\rangle\rangle$}[{$\iota x_e. \ \textsc{Package}(x) \triangleq r$\\$e$}[{this package$_2$}, roof]][{tough\\$\langle e\langle \nu\langle st\rangle\rangle\rangle$}]][{$\lambda v_\nu. \ \lambda w_s.$ \\ $\textsc{Content}(v)(w) =$ \\ $\lambda w'_s. \ \text{Joseph sends the package to Lisa in } w'$\\
+			$\langle\nu\langle st\rangle\rangle$}[{for\\$\langle\langle st\rangle\langle e\langle st\rangle\rangle\rangle$}][{$\lambda w'_s.$ \\ $\ \text{Joseph sends the package to Lisa in } w'$\\
+			$\langle st\rangle$}[PRO$_1$ to send pro$_2$ to Lisa, roof]]]]]
+	\end{forest}
+	}
+\end{figure}
+
+A few additional things to note about the updated semantics for \textit{tough} we propose here. First, the meaning of \textit{tough} and other predicates from the same class can be divided into a ``core'' component, close to what had been proposed for those predicates in the past ($\textsc{Tough}(j)(v)(w')$), and a causative ``wrapper'' ($\exists P: P(r)(w) \wedge \forall w' \dots$) which introduces the new \textsc{Reference} argument and quantifies over possible worlds.\footnote{This might suggest that \textit{tough} should be decomposed in the syntax, and therefore subject to scopal interactions of the form:
+	\begin{align*}
+		\textsc{Op} > \textsc{Caus} > \textsc{Tough}\\
+		\textsc{Caus} > \textsc{Op} > \textsc{Tough}\\
+		\textsc{Caus} > \textsc{Tough} > \textsc{Op}
+	\end{align*}
+	To test this hypothesis, one should probably study \textit{tough}-constructions combined with decompositional adverbs \cite{McCawley1971,Rapp1999}, such as:
+	\begin{exe}
+		\ex 
+		\begin{xlist}
+			\ex[] {Johnny is again/almost impossible for Lucy to negotiate with.\\
+				$\leadsto$ It is again/almost the case that something about Johnny causes Lucy to find it impossible to negotiate with him.\\
+				$\leadsto$ There is something about Johnny that again/almost causes Lucy to find it impossible to negotiate with him.\\
+				$\leadsto$ There is something about Johnny that causes Lucy to find it again/almost impossible to negotiate with him.\\
+			}
+		\end{xlist}
+	\end{exe}
+	Disambiguating scenarios for those readings however, are hard to design, and left for future work.} Thus, predicates of the \textit{tough}-class can be rephrased as roughly  ``\textsc{Reference} causes \textsc{Judge} to evaluate \textsc{Event} as \textsc{Tough-Pred}''. While the causative wrapper is expected to remain constant across predicates of the \textit{tough}-class, the core meaning is expected to change.
+
+\begin{align*}
+	\textsc{Impossible}(j)(v)(w') &= \neg \exists w''. \ B^j_{w'}(w'') \wedge \textsc{Occurs}(v)(w'')\\
+	\textsc{Fun}(j)(v)(w') &= \forall w'': \ B^j_{w'}(w'') \wedge \textsc{Occurs}(v)(w''). \ \text{$j$ has fun in $v$}
+\end{align*}
+
+
+A second thing to note is the presence of \textsc{Judge}-dependence at two levels in the meaning of \textit{tough}: at the level of the core meaning (the \textsc{Judge} evaluates the putative event), but also at the level of the causative component (causation is being evaluated from the \textsc{Judge}'s point of view).\\
+
+The key point of this section is therefore the following: \textit{tough} takes its subject as a semantic argument and assigns a $\theta$-role to it. This is more in line with \textsc{Base-Generation} account of the construction, whereby no $\theta$-transmission is required between the embedded null-operator or pronoun and the matrix subject. 
+
+
+
+\section{The status of \textit{it}-\textit{tough}-constructions (iTCs)}\label{sec:it-not-expletive}
+\subsection{iTCs are not expletive constructions}
+We now turn to the case of iTCs such as (\ref{ex:itc}) (repeated below), where the \textsc{Reference} argument is expected to be the seemingly expletive \textit{it}.
+\begin{exe}
+	\ex[] {\textbf{It} is tough to send this package to Suzi. \hfill iTC}
+\end{exe}
+
+Traditional approaches to \textit{tough}-constructions (both \textsc{Long-Movement} and \textsc{Base-Generation}) have taken the existence of such ``expletive'' \textit{it}-\textit{tough}-constructions to mean that the \textit{tough}-subject was \textit{not} thematic. \textsc{Base-Generation} approaches in particular, had to posit a specific $\theta$-transmission process at the syntactic level, and an ambiguous entry for \textit{tough} at the semantic level, in order to account for both fTCs and iTCs (see \cite{Keine2017} and Section \ref{sec:tough-pretty}). But if \textit{it} happens to be a contentful element in iTCs, our approach will have a clear advantage since it will allow to assume a simpler version of the \textsc{Base-Generation} approach, along with a single lexical entry for \textit{tough}, applicable to both fTCs and iTCs.\\
+
+We show here that there is evidence from French that the \textit{it} present in iTCs is not a pure dummy element. In that language, \textit{it} can be expressed \textit{via} two pronouns, an expletive (\textit{il}), which is (unfortunately) ambiguous with the masculine third-person singular pronoun; and a demonstrative (\textit{ça}, \textit{cela}).\\
+
+The expletive variant \textit{il} is the only variant allowed in (uncontroversially expletive) raising constructions (RCs), as shown by the contrast in (\ref{ex:raising-it-this}), as well as impersonal ``weather''-sentences (\ref{ex:weather-it-this}) and the impersonal deontic \textit{falloir}-construction (\ref{ex:falloir-it-this}).
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\gll \textbf{Il} semble que Jolyne gagne.\\ 
+			It.EXPL seems that Jolyne wins.\\ 
+			\glt `It seems that Jolyne wins.'\hfill \textit{il}-raising \cmark}\label{raising-it}
+		\ex[*] {\gll \textbf{Ça} semble que Jolyne gagne.\\ 
+			It.DEM seems that Jolyne wins.\\ 
+			\glt Intended: `It seems that Jolyne wins.'\hfill \textit{ça}-raising \xmark}\label{raising-this}
+	\end{xlist}\label{ex:raising-it-this}
+\end{exe}
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\gll \textbf{Il} neige ce matin.\\ 
+			It.EXPL snows this morning.\\ 
+			\glt `It is snowing this morning.'\hfill \textit{il}-weather \cmark}\label{weather-it}
+		\ex[*] {\gll \textbf{Ça} neige ce matin.\\ 
+			It.DEM snows this morning.\\ 
+			\glt Intended: `It is snowing this morning.'\hfill \textit{ça}-weather \xmark}\label{weather-this}
+	\end{xlist}\label{ex:weather-it-this}
+\end{exe}
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\gll \textbf{Il} faut que Bruno achète du pain.\\ 
+			It.EXPL must that Bruno buy some bread.\\ 
+			\glt `Bruno must buy bread.'\hfill \textit{il}-deontic \cmark}\label{falloir-it}
+		\ex[*] {\gll \textbf{Ça} faut que Bruno achète du pain.\\ 
+			It.DEM must that Bruno buy some bread.\\ 
+			\glt Intended: `Bruno must buy bread.'\hfill \textit{ça}-deontic \xmark}\label{falloir-this}
+	\end{xlist}\label{ex:falloir-it-this}
+\end{exe}
+
+The demonstrative variant \textit{ça} on the other hand, is the only variant allowed in subject-doubling (SD) constructions \cite{Jaeggli1981, Roberge1986,deCat2007}, whereby the subject is clearly thematic. This is established by the contrasts in (\ref{ex:subject-doubling-it-this})\footnote{In (\ref{ex:subject-doubling-it-this}), we used a feminine subject (\textit{la lavande}) to avoid any ambiguity between the expletive, gender-neutral \textit{il} (target) and the homophonous masculine personal pronoun (automatically banned due to being incompatible with a feminine antecedent).} (nominal subject), and (\ref{ex:cl-doubling-it-this}) (clausal subject).
+
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[*] {\gll La lavande$_i$, \textbf{il}$_i$ sent bon.\\
+			The lavender, it.EXPL smells nice.\\
+			\glt Intended: `Lavender smells nice.' \hfill \textit{il}-SD \xmark}\label{ex:subject-doubling-it}
+		\ex[] {\gll La lavande$_i$, \textbf{ça}$_i$ sent bon.\\
+		The lavender, it.DEM smells nice.\\
+		\glt `Lavender smells nice.' \hfill \textit{ça}-SD \cmark }\label{ex:subject-doubling-this}
+	\end{xlist}\label{ex:subject-doubling-it-this}
+	\ex 
+	\begin{xlist}
+		\ex[*] {\gll Aller au théâtre$_i$, \textbf{il}$_i$ change les idées.\\
+			To-go to-the theatre, it.EXPL changes the ideas.\\
+			\glt Intended: `Going to the theatre clears your head.' \hfill \textit{il}-SD \xmark}\label{ex:cl-doubling-it}
+		\ex[] {\gll Aller au théâtre$_i$, \textbf{ça}$_i$ change les idées.\\
+			To-go to-the theatre, it.DEM changes the ideas.\\
+			\glt `Going to the theatre clears your head.' \hfill \textit{ça}-SD \cmark}\label{ex:cl-doubling-this}
+	\end{xlist}\label{ex:cl-doubling-it-this}
+\end{exe}
+
+
+As a result, \textit{ça}, contrary to \textit{il}, has been consistently argued to be is a ``uniformly referential, $\theta$-bearing pronoun'' \cite{Kayne1983,Pollock1983,Jaeggli1981,Zaring1994}. Interestingly, \textit{ça} is also the preferred pronoun in French iTCs (\ref{tough-this}).\footnote{The availability of \textit{il} in iTCs remains somewhat mysterious. It might be due to the very same \textit{caveat} we mentioned in the previous footnote, namely that French expletive \textit{il} is ambiguous with the masculine third person singular pronoun. The \textit{il} present in iTCs may thus very well be a referential pronoun as well, and not an expletive. In any event, this does not affect the main point, namely that \textit{ça}, which is unambiguously \textit{in need} of a $\theta$-role, is licensed in iTCs.}
+\begin{exe}
+	\ex
+	\normalsize
+	\begin{xlist}
+		\ex[?] {\gll \textbf{Il} est dur d' apprécier Jean-Pierre.\\ 
+		It.EXPL is tough to like Jean-Pierre.\\
+		\glt `It is tough to like Jean-Pierre.' \hfill \textit{il}-TC}\label{tough-it}
+		\ex[] {\gll \textbf{C'} est dur d' apprécier Jean-Pierre.\\ 
+		It.DEM is tough to like Jean-Pierre.\\
+		\glt `It is tough to like Jean-Pierre.' \hfill \textit{ça}-TC}\label{tough-this}
+	\end{xlist}
+\end{exe}
+
+The key takeaway from French is thus that the seemingly ``expletive'' iTCs license a $\theta$-bearing pronoun as subject, and by that do not pattern like other uncontroversially expletive construction. The behavior of the French pair \textit{il}/\textit{ça} in turn suggests that English \textit{it} is ambiguous between an expletive and a referential pronoun, such that \textit{it}$_{\text{expl.}}$ (=\textit{il}) would be used in raising and ``weather'' constructions, and \textit{it}$_{\text{ref.}}$ (=\textit{ça}) would be used in TCs.\footnote{The question remains as to why English \textit{this} does not play the same role as French \textit{ça}. I unfortunately do not have any principled explanation for this discrepancy, other than saying that \textit{ça} and \textit{this}, although quite similar on the surface, are not compatible with the exact same environments; of particular relevance perhaps, is that English \textit{this} cannot serve as an extraposition marker.}
+
+\subsection{iTCs have the properties of extraposed constructions}
+We showed that \textit{it} in iTCs is most likely not an expletive. But then, what is \textit{it}? We argue here that \textit{it} is an extraposition marker, meaning, a cataphoric pronoun referring to the embedded clause. More specifically, we assume that \textit{it} and the embedded CP together form a complex nominal at the matrix level, and that extraposition \textit{per se} amounts to rightward adjunction. This approach to \textit{it}-extraposition has been advocated for by \cite{Rosenbaum1967,Sonnenberg1992,Muller1995,Buring1997,Hinterwimmer2010}, in particular regarding the German proform \textit{es} in various contexts.
+
+
+
+In our case, this analysis means that an iTC such as (\ref{ex:it-tc}) is derivationally related to a clause-fronted \textit{tough}-construction (cfTC) such as (\ref{ex:clause-fronted-tc}).
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\textbf{To send this package to Lisa} is tough. \hfill (\textbf{cfTC})} \label{ex:clause-fronted-tc}
+		\ex[] {\textbf{It} is tough \textbf{to send this package to Lisa}. \hfill (\textbf{iTC} = \textit{it}-extraposed \textbf{cfTC})} \label{ex:it-tc}
+	\end{xlist}
+\end{exe}
+
+The \textit{it}-variant of the \textit{tough}-construction would then be analyzed in a similar way as \textit{it}-extraposed sentences featuring rightward CP-movement like those in (\ref{ex:it-extraposed-subject}) and (\ref{ex:it-extraposed-object}).
+\begin{exe}
+	\ex
+	\begin{xlist}
+		\ex[] {\textbf{It} was frustrating \textbf{that Johnny lost the race}. \hfill CP-extraposed}
+		\ex[] {\textbf{That Johnny lost the race} was frustrating. \hfill CP-\textit{in situ}}
+	\end{xlist}\label{ex:it-extraposed-subject}
+	\ex
+	\begin{xlist}
+		\ex[] {We suggested \textbf{it} to them \textbf{that we leave later than planned}. \hfill CP-extraposed}
+		\ex[] {We suggested \textbf{that we leave later than planned} to them. \hfill CP-\textit{in situ}}
+	\end{xlist}\label{ex:it-extraposed-object}
+\end{exe}
+
+A first thing to note is that French infinitival extraposed constructions, just like \textit{it}-\textit{tough}-constructions, preferentially make use of the pronoun \textit{ça}. In those constructions, the infinitival clause is also consistently introduced by the particle \textit{de}, which usually serves as a genitive marker. This property is shared by French iTCs, as shown in (\ref{tough-this}) above. A few examples of such extraposed constructions are given below (note that the c. examples are intended to show that the constructions at stake are \textit{not} instances of the \textit{tough}-construction in French). 
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {\gll \textbf{??Il/Ça} vaut le coup d' acheter le ticket groupé.\\
+		??It.EXPL/It.DEM is-worth the shot DE buy the ticket bundled.\\
+		`It is worth it to buy the bundle ticket.'}
+		\ex[] {\gll \textbf{Acheter} \textbf{le} \textbf{ticket} \textbf{groupé} vaut le coup.\\
+			To-buy the ticket bundled is-worth the shot.\\
+			\glt `Buying the bundle ticket is worth it.'}
+		\ex[*] {\gll \textbf{Le} \textbf{ticket} \textbf{groupé} vaut le coup à acheter.\\
+		The ticket bundled is-worth the shot À to-buy.\\
+		\glt Intended: `The bundle ticket is worth buying.'}
+	\end{xlist}
+	\ex 
+	\begin{xlist}
+		\ex[] {\gll \textbf{*Il/Ça} demande du courage de faire ce travail.\\
+		*It.EXPL/It.DEM asks some courage DE do this job.\\
+		\glt `It takes courage to do this job.'}
+		\ex[] {\gll \textbf{Faire} \textbf{ce} \textbf{travail} demande du courage.\\
+			Doing this job asks some courage.\\
+			\glt 'Doing this job takes some courage.'}
+		\ex[??] {\gll \textbf{Ce} \textbf{travail} demande du courage à faire.\\
+		This job asks some courage Á do.\\
+		\glt Intended: `This job takes some courage.'}
+	\end{xlist}
+	\ex 
+	\begin{xlist}
+		\ex[] {\gll \textbf{*Il/Ça} me détend considérablement d' écouter de la musique.\\
+		*It.EXPL/It.DEM me relaxes a-great-deal DE listen some the music.\\
+		\glt `It relaxes me a great deal to listen to music.'
+		}
+		\ex[] {\gll \textbf{Écouter} \textbf{de} \textbf{la} \textbf{musique} me détend considérablement.\\
+			Listening some the music me relaxes a-great-deal.\\
+			`Listening to music relaxes me a great deal.'}
+		\ex[??] {\gll\textbf{La} \textbf{musique} me détend considérablement à écouter.\\
+		The music me relaxes a-great-deal Á listen.\\
+		\glt Intended: `Music relaxes me a great deal when I listen to it.'}
+	\end{xlist}
+\end{exe}
+
+
+\iffalse
+	\item Extraposed constituents are notoriously subject to two constraints: frozenness to further extraction and clause-boundedness \cite{Keller1995}.Ross’s (1967: 160) ‘Frozen Structure Constraint’
+	states that subextraction from extraposed constituents is ungrammatical
+\fi
+
+Extraposed constituents are notoriously frozen to further extraction (second part of \cite{Ross1967}'s \textit{Frozen Structure Constraint}, nowadays rephrased in terms of the Adjunct Condition). In particular, \textit{wh}-extraction is predicted to be impossible out of an extraposed constituent. The contrast between (\ref{ex:wh-no-pp-extraposition}) and (\ref{ex:wh-pp-extraposition}) below (adapted from \cite{Keller1995}) illustrates this restriction in the case of a clear instance of PP-extraposition (baselines without \textit{wh}-extraction in (\ref{ex:no-pp-extraposition}) and (\ref{ex:pp-extraposition})):
+\begin{exe}
+	\ex \textit{Wh-movement is permitted out of non-extraposed PPs}
+	\begin{xlist}
+		\ex[] {You saw a picture \textbf{of Rohan} in the newspaper.} \label{ex:no-pp-extraposition}
+		\ex[] {\textbf{Who} did you see a picture of \textbf{t} in the newspaper?} \label{ex:wh-no-pp-extraposition}
+	\end{xlist}
+	\ex \textit{Wh-movement is banned out of extraposed PPs}
+	\begin{xlist}
+		\ex[] {You saw a picture \textbf{t} in the newspaper \textbf{of Rohan}.}\label{ex:pp-extraposition}
+		\ex[*] {\textbf{Who} did you see a picture in the newspaper
+			of \textbf{t}?}\label{ex:wh-pp-extraposition}
+	\end{xlist}
+\end{exe}
+	 This result extends to CP-extraposed constituents, as shown by the contrast between (\ref{ex:wh-no-cp-extraposition}) and (\ref{ex:wh-cp-extraposition}).
+	\begin{exe}
+		\ex \textit{Wh-movement is permitted out of non-extraposed CPs}
+		\begin{xlist}
+			\ex[] {Lucy mentioned to Steven \textbf{that Johnny lost the race.}} \label{ex:no-cp-extraposition}
+			\ex[] {\textbf{Which race} did Lucy mention to Steven that Johnny lost \textbf{t}?}\label{ex:wh-no-cp-extraposition}
+		\end{xlist}
+		\ex \textit{Wh-movement is banned out of extraposed CPs}
+		\begin{xlist}
+			\ex[] {Lucy mentioned \textbf{it} to Steven \textbf{that Johnny lost the race.}} \label{ex:cp-extraposition}
+			\ex[*] {\textbf{Which race} did Lucy mention \textbf{it} to Steven that Johnny lost \textbf{t}?}\label{ex:wh-cp-extraposition}
+		\end{xlist}
+	\end{exe}
+	One has to note however, that the contrast becomes weaker when extraposition proceeds from the subject position, both in English (\ref{ex:wh-subject-cp-extraposition}) and French (\ref{ex:wh-subject-extraposition-fr}).
+	\begin{exe}
+		\ex \textit{Wh-movement is disfavored out of extraposed subject CPs}
+		\begin{xlist}
+			\ex[] {\textbf{It} was frustrating \textbf{that Johnny lost the race}.}
+			\ex[?] {\textbf{Which race} was \textbf{it} frustrating that Johnny lost \textbf{t}?}
+		\end{xlist}\label{ex:wh-subject-cp-extraposition}
+	\end{exe}
+	\begin{exe}
+		\ex \textit{Wh-movement is disfavored out of extraposed subject CPs}
+		\begin{xlist}
+			\ex[?] {\gll Qu' est-ce que \textbf{ça} vaut le coup d' acheter \textbf{t}?\\
+				What is-it that it.DEM is-worth the shot DE buy ~?\\
+				Intended: `What is worth it to buy?'}
+			\ex[?] {\gll Qu' est-ce que \textbf{ça} demande du courage de faire \textbf{t}?\\
+				What is-it that it.DEM asks some courage DE do ~?\\
+				\glt Intended: `What takes courage to do?'}
+			\ex[?] {\gll Qu' est-ce que \textbf{ça} me détend considérablement d' écouter \textbf{t}?\\
+			What is-it that it.DEM me relaxes a-great-deal DE listen-to ~?\\
+				\glt Intended: `What relaxes me a great deal when I listen to it?'
+			}
+		\end{xlist}\label{ex:wh-subject-extraposition-fr}
+	\end{exe}
+
+	 iTCs, contrary to the other variants of the construction\footnote{We chose not to use a clause-fronted \textit{tough}-construction as a baseline here, because \textit{wh}-extraction out of a complex subject is ungrammatical for independent reasons.}, seem to verify this fact as well, at least to the extent that CP-extraposed sentences like (\ref{ex:wh-subject-cp-extraposition}) do.
+	\begin{exe}
+		\ex
+		\begin{xlist}
+			\ex[] {\textbf{This package} is tough to send to Lisa. \hfill (fTC) \cmark}
+			\ex[] {\textbf{It} is tough \textbf{to send this package to Lisa}. \hfill (iTC) \cmark}
+		\end{xlist}
+		\ex
+		\begin{xlist}
+			\ex[] {\textbf{Which package}  \textbf{t} was tough to send to Lisa? \hfill \textit{wh}+fTC \cmark}
+			\ex[??] {\textbf{Which package}  was it tough to send \textbf{t} to Lisa? \hfill \textit{wh}+iTC \xmark}
+		\end{xlist}
+	\end{exe}
+This is also verified by French \textit{ça}-TCs.\footnote{As already noted by \cite{Zaring1994,Shahar2008} (examples repeated in \ref{ex:il-ca-extraposition}), frozeness to further extraction applies to French \textit{ça}-extraposed clauses, but not \textit{il}-extraposed clauses...
+	\begin{exe}
+		\ex 
+		\begin{xlist}
+			\ex[] {\gll Comment plaît-\textbf{il} aux instituteurs que ces élèves se comportent \textbf{t}?\\
+				How please-it to-the teachers that these students self behave\\
+				\glt How does it please the teachers that these students behave? }
+			\ex[*] {\gll Comment est-ce que \textbf{cela} plaît aux instituteurs que ces élèves se comportent \textbf{t}?\\
+				How is-this that this please to-the teachers that these students self behave\\
+				\glt How does it please the teachers that these students behave?}
+		\end{xlist}\label{ex:il-ca-extraposition}
+\end{exe}}
+	\begin{exe}
+		\ex
+		\begin{xlist}
+			\ex[] {\gll \textbf{Ce} \textbf{colis} est difficile à envoyer à Lisa.\\
+			This package is tough À send to Lisa.\\
+			\glt `This package is tough to send to Lisa.'\hfill (fTC) \cmark
+			}
+			\ex[] {\gll\textbf{C'} est difficile \textbf{d'} \textbf{envoyer} \textbf{ce} \textbf{colis} \textbf{à} \textbf{Lisa}.\\
+			It.DEM is tough DE send this package to Lisa.\\
+			\glt `It is tough to send this package to Lisa.' \hfill (iTC) \cmark}
+		\end{xlist}
+		\ex
+		\begin{xlist}
+			\ex[] {\gll\textbf{Quel} \textbf{colis} \textbf{t} est difficile à envoyer à Lisa?\\
+			Which package ~ is difficult À send to Lisa?\\
+			\glt `Which package is difficult to send to Lisa?' \hfill \textit{wh}+fTC \cmark}
+			\ex[??] {\gll\textbf{Quel} \textbf{colis} est-ce difficile d' envoyer \textbf{t} à Lisa?\\
+			Which package is-it.DEM tough DE send ~ to Lisa?\\
+			\glt Intended: `Which package was such that it was tough to send it to Lisa?'\hfill \textit{wh}+iTC \xmark}
+		\end{xlist}
+	\end{exe}
+
+	\iffalse
+	 A second constraint that applies to extraposed constituents is clause-boundedness: as exemplified in (\ref{ex:clause-external-pp-extraposition}), extraposition cannot cross a clause boundary (example inspired again from \cite{Keller1995}).
+	\begin{exe}
+		\ex {\textit{Context: Johnny died from in a tragic accident in Japan a few years ago. Lucy, a lifelong friend who lives in the US, never accepted it and believes he is still alive somewhere. Today she saw someone in the newspaper who looks just like Johnny...}}
+		\begin{xlist}
+			\ex[] {Lucy believes $[_{CP}$that she saw a picture \textbf{of Johnny} in the newspaper$]$ with all her heart. \hfill no PP-extrapos. \cmark}\label{ex:clause-no-pp-extraposition}
+			\ex[?] {Lucy believes $[_{CP}$that she saw a picture \textbf{t} in the newspaper \textbf{of Johnny}$]$ with all her heart. \hfill CP-internal PP-extrapos. \cmark}\label{ex:clause-internal-pp-extraposition}
+			\ex[*] {Lucy believes $[_{CP}$that she saw a picture \textbf{t} in the newspaper$]$ with all her heart \textbf{of Johnny}. \hfill CP-external PP-extrapos. \xmark}\label{ex:clause-external-pp-extraposition}
+		\end{xlist}
+	\end{exe}
+	This result is again replicated in the case of \textit{it}-\textit{tough}-constructions (\ref{ex:clause-external-it-extraposition}):\footnote{(\ref{ex:baseline-extraposition}) ensures that the ungrammaticality of (\ref{ex:clause-external-it-extraposition}) is not due to other factors, e.g. the target position of the extraposed constituent. Furthermore, judgments the critical datapoint (\ref{ex:clause-external-it-extraposition}) were mixed -- as some specific prosody was reported to improve grammaticality. Feedback about this example is particularly welcome!}
+	\begin{exe}
+		\ex {\textit{Context: Jonathan has been secretly in love with Erina since they were teenagers. Yesterday, he decided to confess his love to her. He now tells his best friend Robert about it.}}
+		\begin{xlist}
+			\ex[] {Jonathan admitted $[_{CP}$that \textbf{to talk to Erina} was tough$]$ without a moment's hesitation. \hfill \mbox{no \textit{it}-extrapos. \cmark} }\label{ex:clause-no-it-extraposition}
+			\ex[] {Jonathan admitted $[_{CP}$that \textbf{it} was tough \textbf{to talk to Erina}$]$ without a moment's hesitation. \hfill CP-internal \textit{it}-extrapos. \cmark}\label{ex:clause-internal-it-extraposition}
+			\ex[?] {Jonathan admitted $[_{CP}$that \textbf{it} was tough$]$ without a moment's hesitation \textbf{to talk to Erina}. \hfill CP-external \textit{it}-extrapos. \xmark}\label{ex:clause-external-it-extraposition}
+			\ex[] {Jonathan admitted his desire \textbf{t} without a moment's hesitation \textbf{to talk to Erina}. \flushright baseline extrapos. \cmark}\label{ex:baseline-extraposition}
+		\end{xlist}
+	\end{exe}
+	 
+	\begin{exe}
+		\ex 
+		\begin{xlist}
+			\ex[] {\gll Comment est-\textbf{il} facile de réussir la tarte tatin?\\
+				How is-it easy to succeed-in-baking the tarte tatin\\
+				\glt How easy is it to succeed in baking a tarte tatin? }
+			\ex[??] {\gll Comment est-\textbf{ce} facile de réussir la tarte tatin?\\
+				How is-this easy to succeed-in-baking the tarte tatin\\
+				\glt Intended: How easy is it to succeed in baking a tarte tatin? }
+		\end{xlist}
+	\end{exe}
+	\end{itemize}\fi
+	 In brief, the infinitival clause of iTCs, unlike that of fTCs, verifies a key property of extraposed constitutents, which suggests that iTCs result from the extraposition of the subject of the corresponding clause-fronted TC.
+	 Note that, counter-intuitively maybe, this account of iTCs is still compatible with a simple \textsc{Base-Generation} approach without $\theta$-transmission.
+		clause-fronted TCs, like individual-fronted TCs, can be analyzed as having their subject (the clause) base-generated in the matrix, binding a type-$\langle\nu \langle s t \rangle \rangle$ null operator in the \textit{tough}-complement position.
+		 this way, the full-fledged clause plays the role of the \textsc{Reference}, while the coreferential null operator plays the role of the \textsc{Theme}.
+		 iTCs would differ minimally from clause-fronted TCs in that the matrix base-generated clause would undergo extraposition. This does not affect the distribution of $\theta$-roles.
+		 A \textsc{Long-Movement} approach on the other hand, would have to posit that the clause gets both a \textsc{Theme} and a \textsc{Reference} $\theta$-role!
+
+\subsection{Extraposition as a potential solution to Bruening's puzzle}
+We briefly mentioned the issue of ``defective intervention'' in Section \ref{sec:tough-pretty}. This phenomenon, first pointed out in the case of \textit{tough}-constructions by \cite{Hartman2011}, supposedly causes the ungrammaticality of fTCs (but not iTCs) involving an overt matrix experiencer (\ref{ex:defective-intervention}). As noted by \cite{Bruening2014} however, defective intervention in \textit{tough}-constructions strangely extends to adjuncts (cf. (\ref{ex:adjunct-intervention})), and disappears when the seemingly intervening element is slightly displaced (cf. (\ref{ex:defect-defective-intervention})).\iffalse Moreover, as noted by \cite{Longenbaugh2015}, grammatical experiencers in fTCs behave like matrix PPs, and not like subjects of the embedded clause; which casts further doubts on the fact that ``defective intervention'' is really an intervention effect at the matrix level (\ref{ex:ftc-matrix-pp}).\fi
+\begin{exe}
+	\ex \textit{``Standard'' defective intervention \cite{Hartman2011}}
+	\begin{xlist}
+		\ex[] {It is important to Mary to avoid cholesterol.}
+		\ex[*] {Cholesterol is important to Mary to avoid.} 
+	\end{xlist}\label{ex:defective-intervention}
+	\ex \textit{Adjunct intervention \cite{Bruening2014}}
+	\begin{xlist}
+		\ex[] {It was very hard in such conditions to give up sugar.}
+		\ex[*] {Sugar was very hard in such conditions to give up.} 
+	\end{xlist}\label{ex:adjunct-intervention}
+	\ex \textit{``Defect'' of defective intervention due to displacement \cite{Bruening2014}}
+	\begin{xlist}
+		\ex[] {It is important to Mary/in such conditions to avoid cholesterol.}
+		\ex[] {Cholesterol is to Mary/in such conditions important to avoid.} 
+	\end{xlist}\label{ex:defect-defective-intervention}
+	\iffalse
+	\ex \textit{Grammatical experiencers in fTCs are not subjects of a \textit{for}-CP}
+	\begin{xlist}
+		\ex[] {Cucumbers are easy for Sue to grow but they're hard for Bill (to)\footnotemark\hfill Experiencer stranding}
+		\ex[] {It will be tough for Mary$_i$ PRO$_{i+j}$ to meet at that café.\hfill Partial control} 
+	\end{xlist}\label{ex:ftc-matrix-pp}
+	\fi
+\end{exe}
+\footnotetext{This has to be contrasted with \textit{for}-CP ellipsis, which cannot strand the \textit{for}+Dp complex:
+\begin{exe}
+	\ex[] {Mary wanted for Sue to win, but Bill needed for her *(to).}
+\end{exe}}
+Those datapoints may make sense under our analysis, due the overtly realized embedded clause having a different status in fTCs and iTCs; namely, it is a complement in fTCs, but a high-merged adjunct in iTCs (due to extraposition). This is schematized below.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{.45\linewidth}
+		\centering
+		\begin{forest}
+			[aP [DP [Cholesterol]] [a' [a [{is \\ (CAUSE)}]] [AP [PP [to Mary]] [A' [A [important]] [CP[[to avoid, roof]] ]]]]]
+		\end{forest}\label{tree:fronted-tough}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{.45\linewidth}
+		\centering
+		\begin{forest}
+			[[TP[[{\sout{to avoid cholesterol} \\ It}, roof]] [aP [CP[{\sout{to avoid cholesterol}}, roof]] [a' [a [{is \\ (CAUSE)}]] [AP [PP [to Mary]] [A' [A [important]] [pro]]]]]] [CP[[to avoid cholesterol, roof]] ]]
+		\end{forest}\label{tree:it-tough}
+	\end{subfigure}
+\end{figure}
+We assume here that matrix experiencers are adjuncts.\footnote{This is mainly a stipulation here, but a few diagnostics in fact seem to point in that direction:
+\begin{exe}
+	\ex[] {It is important to Mary to avoid cholesterol, and it is so to John to avoid sugar.}
+\end{exe}} In the case of \textit{it}-\textit{tough}-constructions, the position of the overtly realized CP is high enough to allow adjuncts to the \textit{tough}-predicate to be linearized between the predicate and the CP. Those adjuncts of course, can also be linearized to the left of the predicate. In the case of fronted \textit{tough}-constructions, the embedded CP is a complement of the \textit{tough}-predicate, and therefore, not adjunct can be linearized between the predicate and the CP.
+
+
+
+However, adjuncts cannot be linearized between \textit{tough}-predicate and the CP in Figure \ref{tree:fronted-tough}, while they can in Figure \ref{tree:it-tough}, due to the fact that a very high copy of the CP is being realized. In brief, the extraposition analysis can predict why ``low'' matrix experiencer and adjuncts are ungrammatical only in fTCs.
+JUSTIFY CAUSE DECOMPOSITION: TEST WITH NEGATION NOT(IS TOUGH) VS IS (NOT TOUGH). ALSO MENTION COMPATIBILITY OF THIS PACKAGE IS NOT TOUCH TO SEND BUT WELL IT'S TOUGH TO SEND IT.
+
+\subsection{iTCs have a clausal \textsc{Reference} argument}
+	 We have shown that iTCs are most likely extraposed clause-fronted TCs; which allows the lexical entry of \textit{tough} to apply to iTCs as well as fTCs.
+	 A further prediction is that the \textsc{Reference} argument in iTCs should be interpreted as -- roughly -- the embedded clause; such that  (\ref{it-extracted-tough}) and (\ref{clause-fronted-tough}) end up having the same truth conditions:
+	\begin{exe}
+		\ex 
+		\begin{xlist}
+			\ex[] {\textbf{It} is tough \textbf{to send this package to Lisa}. \hfill (\textbf{iTC})}\label{it-extracted-tough}
+			\ex[] {\textbf{To send this package to Lisa} is tough. \hfill (\textbf{cfTC})}\label{clause-fronted-tough}
+		\end{xlist}
+	\end{exe}
+	 We assume here that (\ref{it-extracted-tough}) and (\ref{clause-fronted-tough}) should be true iff some property $P$ of a salient \textit{sending-this-package-to-Lisa} event is causing this event's own toughness. Assuming that $P$ can be about any \textit{participant} of the event (e.g. \textit{the package} or \textit{Lisa}) or the action itself (\textit{sending}), (\ref{it-extracted-tough}) is predicted to be relatively acceptable in both \textbf{Scenario 1} and \textbf{Scenario 2}, repeated below.
+	 \begin{center}
+	 	\fbox{
+	 		\begin{minipage}{.8\linewidth}
+	 			\underline{\textbf{Scenario 1:}} \textit{Joseph has to send a very big and heavy package to Lisa, who lives in the same country as Joseph (so that if the package was a simple letter, Joseph would have no problem sending it to Lisa). Joseph complains to Suzi about this.}
+	 		\end{minipage}
+	 	}
+	 \end{center}
+	 \begin{center}
+	 	\fbox{
+	 		\begin{minipage}{.8\linewidth}
+	 			\underline{\textbf{Scenario 2:}} \textit{Joseph has to send a small and lightweight package to Lisa, who lives in an isolated place in a remote island, without any nearby post office. Joseph complains to Suzi about this.}
+	 		\end{minipage}
+	 	}
+	 \end{center}
+ 	
+	 We think that this prediction is borne out. Besides being compatible with \textbf{Scenarios} \textbf{1} and \textbf{2}, (\ref{it-extracted-tough}), unlike its fronted alternatives (\ref{object-extracted-tough}) and (\ref{goal-extracted-tough}) repeated below,  should also be compatible with the following scenario, where the \textit{toughness} is induced by the \textit{sending} event as a whole:
+	\begin{center}
+		\fbox{
+			\begin{minipage}{.8\linewidth}
+				\underline{\textbf{Scenario 3:}} \textit{Joseph has to send a small and lightweight package to Lisa, who lives in the same country as Joseph. However, the local post office has a very restricted schedule, and always ends up crowded; Joseph expects a 3-hour line to send his package. Joseph complains to Suzi about this.}
+			\end{minipage}
+		}
+	\end{center}
+
+		
+
+	 Below is a recap of the whole paradigm.
+	\begin{exe}
+		\ex
+		\begin{xlist}
+			\ex[] {Joseph: \textbf{This package} is tough to send to Lisa. \hspace{4.3mm} 1 \cmark \hspace{2.5mm} 2 \textbf{?} \hspace{2.2mm} 3 \xmark \hfill (object-fTC)}
+			\ex[]{Joseph: \textbf{Lisa} is tough to send this package to. \hspace{6mm} 1 \xmark \hspace{3.3mm} 2 \cmark \hspace{2.5mm} 3 \xmark \hfill (goal-fTC)}
+			\ex[]{Joseph: \textbf{It} is tough \textbf{to send this package to Lisa}. \hspace{1.2mm} 1 \cmark \hspace{2.5mm} 2 \cmark \hspace{2.5mm} 3 \cmark \hfill (iTC)}
+		\end{xlist}
+	\end{exe}
+	Moreover, this predicts that the the (in)felicity of the following sequences.
+	\begin{exe}
+		\ex 
+		\begin{xlist}
+			\ex[\#] {\textbf{It} is not tough \textbf{to send this package to Lisa}. Yet, \textbf{to send this package to Lisa} is tough.}
+			\ex[] {It's not the case that \textbf{this package} is tough to send to Lisa. Yet, \textbf{it} is tough \textbf{to send this package}.}
+		\end{xlist}
+	\end{exe}
+	We have shown that \textit{tough} takes an extra \textsc{Reference} argument and we modified its lexical entry accordingly. We argued that the resulting entry could apply homogeneously in both fTCs and iTCs, modulo the independently motivated assumption that \textit{it} in iTCs is a referential, $\theta$-bearing extraposition marker. We now have done all the heavy-lifting required to naturally extend our account to a construction that is (at least) superficially similar to the \textit{tough}-construction: the \textit{pretty}-construction.
+
+\section{Extension to PCs: a reversal in argument structure}\label{sec:pretty-constructions}
+We now finally turn to the class of \textit{pretty}-predicates, in an attempt to explain the two main syntactic differences between \textit{tough}-constructions and \textit{pretty}-constructions, namely the (un)availability of an \textit{it}-variant, and the (im)possibility of further embedding within the complement clause.
+
+\subsection{Similarities and differences between \textit{pretty} and \textit{tough}}
+As mentioned in Section \ref{sec:puzzle}, a specificity of \textit{pretty}-constructions as opposed to \textit{tough}-constructions is that, those structures do not allow for further embedding within their infinitival complement. This contrast is shown in (\ref{ex:embedding}), repeated below.
+\begin{exe}
+	\exr{ex:embedding}
+	\begin{xlist}
+		\ex[] {\textbf{This horse} is tough to convince Johnny to ride.}
+		\ex[*] {\textbf{This painting} is pretty to convince Lucy to look at.}
+	\end{xlist}
+\end{exe}
+Intuitively, it is totally fine for a \textit{convincing-Johnny-to-ride-this-horse} event to be judged as \textit{tough}. The unacceptability of (\ref{ex:emb-pc})  seems to come from the fact that a \textit{convincing-Lucy-to-look-at-this-painting} event does not constitute a suitable circumstance for a prettiness judgment about the painting. In other words, a \textit{convincing}-event is not susceptible to \textit{cause} a prettiness judgment. This also suggests that the impossibility of long-distance dependencies in \textit{pretty}-constructions is not syntactic, but rather, \textit{appears syntactic} due to embedding predicates (raising, control, attitude...) being generally incompatible with direct sensory experience. 
+
+
+
+ 	\iffalse
+ 		\item To flesh out this intuition, let us consider the two following scenarios.
+ 		\begin{tcolorbox}
+ 			\begin{itemize}
+ 				\item \underline{\textbf{Background for both Scenarios}:} \textit{Tomorrow in San Diego will be the start of the biggest horse race that has ever happened in America. Johnny is a former jockey and is looking forward to attending the kick-off event.}
+ 				\item \underline{\textbf{Scenario 4}:} \textit{Johnny is aware that he may oversleep and show up late at the event; in that eventuality, he would end up very far from the starting line, surrounded by people that are way taller than him, and would hardly see anything}.
+ 				\item \underline{\textbf{Scenario 5}:} \textit{Johnny is convinced that he will show up early at the event, and that he will manage to get the best seats, closest to the starting line. For sure, all the conditions will be met for him to enjoy the race.}
+ 			\end{itemize}
+ 		\end{tcolorbox}
+ 		\item The following sentence:
+ 		\begin{exe}
+ 			\ex[] {Johnny: \textbf{The race} is pretty to look at.}
+ 		\end{exe}
+ 		Appears clearly felicitous under \textbf{Scenario 5} and clearly infelicitous under \textbf{Scenario 4}, even tough in both scenarios the race had the same inherent qualities, and Johnny, the same standards.
+ 		\item This again means that \textit{pretty}-predicates are sensitive to some properties of the circumstances in which the \textit{prettiness} judgment is expressed by the judge.
+ 	\fi
+This causality relationship between the \textit{pretty} predicate and the infinitival clause in turn suggests that the infinitival clause constitutes the \textsc{Reference} argument of \textit{pretty}. To flesh out this intuition, let us try to replicate the effect established for \textit{tough}-subject \textit{via} \textbf{Scenario 1} and \textbf{Scenario 2} back in Section \ref{ex:fronting-strategies-tough}. In the case of the \textit{pretty}-construction, we will need to make the content embedded clause vary, and see if any interpretive differences arise. This as we will see, requires some creativity in the formulation of the Scenarios, because \textit{pretty}-predicates, due to their sensory component, only allow for a reduced number of embedded events in the general case. We tried to circumvent this restriction in the following two Scenarios:
+
+\begin{center}
+	\fbox{
+		\begin{minipage}{.8\linewidth}
+			\textbf{\textbf{\underline{Scenario 4:}}} \textit{In year 3059, people are often subject to chronic ageusia (loss of taste and smell). Ingenious brain implants have been developed however, that allow to ``wire'' visual perception to a feeling of gustatory pleasure or disgust.}
+		\end{minipage}
+	}
+\end{center}
+\begin{center}
+	\fbox{
+		\begin{minipage}{.8\linewidth}
+			\textbf{\textbf{\underline{Scenario 5:}}} \textit{In year 3059, people are often subject to chronic ageusia (loss of taste and smell). Ingenious brain implants have been developed however, that allow to ``wire'' tactile perception at the level of the mouth to a feeling of gustatory pleasure or disgust.}
+		\end{minipage}
+	}
+\end{center}
+Now, let us evaluate the (normally odd-sounding) statements in (\ref{ex:tasty-unusal-circumstances}) w.r.t. the previous Scenarios.
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[] {This cherry pie is delicious to look at.}\label{ex:tasty-visual}
+		\ex[] {This cherry pie is delicious to feel.}\label{ex:tasty-tactile}
+	\end{xlist}\label{ex:tasty-unusal-circumstances}
+\end{exe}
+Given \textbf{Scenario 4}, (\ref{ex:tasty-visual}) seems rather acceptable, while (\ref{ex:tasty-tactile}) seems to be ruled out. Given \textbf{Scenario 5}, the judgments get reversed. This is exactly what we would expect if event whose content is the embedded clause ``causes'' a \textit{deliciousness} judgment. We also see that in principle, a \textit{deliciousness} judgment may not be tied to a \textit{tasting}-like event, but that normally is the case due to how a gustatory experience is usually induced.\\
+
+
+
+
+
+
+We therefore define the lexical entry of \textit{{pretty}} as similar to that of \textit{{tough}}, except that the roles of the infinitival clause and that of the subject are reversed. More specifically, \textit{{pretty}} combines with the infinitival clause (its \textsc{Reference} argument) through Functional Application, just like \textit{tough} did with its own \textsc{Reference} argument. The ``cause'' of the \textit{prettiness} judgment is some event that is part of the denotation of the infinitival clause; \textit{{pretty}} states the prettiness of its \textit{subject} each time the circumstances denoted by the embedded clause are met. 
+\begin{center}
+	\fbox{
+		\begin{minipage}{.8\linewidth}
+			\centering
+			$\llbracket$pretty$\rrbracket$^j = $\lambda C_{\langle \nu \langle s t\rangle \rangle} . \ \lambda x_{e\setminus \nu}. \ \lambda w_s .$ \\ $\exists v_\nu. \ C(v)(w) \wedge \forall w'_s. \ w' \in \mathcal{B}^j_{w} \wedge C(v)(w'). \ \textsc{Pretty}(x)(w')(j)$
+		\end{minipage}
+	}
+\end{center}
+\textit{Pretty} states the existence of an event $v$ whose \textsc{Content} in $w$ is equal to the proposition denoted by the embedded clause $C$ (i.e. $e$ is a verifier of $C$), and such that in any relevantly accessible world where $v$ remains a verifier of $C$, $x$ is judged as pretty by $j$. Coming back to the case of embedded events in PCs (\ref{ex:emb-pc}):
+(\ref{ex:emb-pc}) is predicted to be true if there is a \textit{convincing-Lucy-to-look-this-painting} event in the actual world such that in all relevantly accessible worlds according to the speaker where \textit{this painting} is still part of the \textit{convincing} event, the speaker judges the painting to be pretty. There is no reason to think that all the relevantly accessible worlds verify the aforementioned condition, i.e., the causality relationship implied by \textit{pretty} in (\ref{ex:emb-pc}) does not make sense! Our account thus correctly predicts the oddity of this sentence.
+\subsection{\textit{Pretty}-predicates are properties of ``pure'' individuals, which explains *iPC}
+ADD THAT PRETTY CONSTRUCTION HAVE AN OBLIGATORY REFERENCE (EMBEDED CLAUSE) AND THAT THE PB COMES FROM THE FACT THAT A SUBJECT EVENT (ORIGINATING IN THE REF CLAUSE) CANNOT BE LOOKED AT OR TASTED, SO WE HAVE TWO CLASHES.
+We first argue that \textit{pretty}-predicates normally denote properties of ``pure'' individuals of type $e \setminus \nu$ (as opposed to type-$\nu$ events). Even if it appears possible to say things such as (\ref{ex:nom-event-pc}), where the event is a nominal, non-nominal (clausal) events can never be \textit{pretty} (\ref{ex:non-nom-event-visual-pc}), and even less \textit{delicious} (\ref{ex:non-nom-event-gustative-pc}):
+\begin{exe}
+	\ex
+	\begin{xlist}
+		\ex[] {\textbf{This wedding} was pretty.}\label{ex:nom-event-pc}
+		\ex[??] {\textbf{Dancing the waltz} is pretty.}\label{ex:non-nom-event-visual-pc}
+		\ex[??] {\textbf{Eating this cherry pie} was delicious.}\label{ex:non-nom-event-gustative-pc}
+	\end{xlist}
+\end{exe}\label{ex:pretty-event-non-nominal}
+We assume that event nominals in fPCs are always interpreted in a metonymic way, such that \textit{pretty} applies to some participants of the event instead of the event as a whole. For instance, a \textit{pretty wedding} is expected to involve at least some ``pretty'' (non-eventive) individuals as participants (animate or not). On the other hand, a contemporary art performance designed to shock and be the ugliest in every detail, but beautifully orchestrated, could hardly be judged as pretty.\footnote{Or, the public has a very specific notion of beauty, and we are back in the metonymic case.}Since metonymic interpretation is usually not possible with clausal elements, those are naturally excluded from the subject position of fPCs. As a result, extraposed clause-fronted PCs (=iPCs) are predicted to be bad as well, which is exactly what is desired:
+\begin{exe}
+	\ex 
+	\begin{xlist}
+		\ex[*] {\textbf{It} is pretty \textbf{to dance the waltz}. \hfill (\textbf{*iPC})}
+	\end{xlist}
+\end{exe}
+\section*{Conclusion: a typology of predicates with infinitival complements}\label{sec:conclusion}		
+	 We showed that \textit{tough} and \textit{pretty} are both subjective predicates in need of a \textsc{Reference} argument, understood as the source of the \textit{toughness} or \textit{prettiness} judgments.
+	 \textit{Tough} and \textit{pretty} only differ in the syntactic configuration of their respective arguments. \textit{Tough} on the one hand, takes its subject as \textsc{Reference} in both fTCs and iTCs, states the toughness of the \textit{event} denoted by the infinitival clause. \textit{Pretty} on the other hand, takes the embedded clause as \textsc{Reference}, and states the prettiness of its subject (a ``proper'' individual).\\
+	 
+	 This paradigm may also extend to other varieties of infinitival constructions: so-called \textit{rare}-constructions \cite{Fleisher2015} and \textit{rude}-constructions \cite{Stowell1991, Bennis2000, Bennis2004, Landau2006}.
+	 \textit{Rare}-constructions, exemplified in (\ref{rare-tough}), have been argued to form an independent subclass of TCs, in that their grammaticality seems to be conditioned by the matrix subject being ``kind''-denoting (example from \cite{Fleisher2015}, extracted from a naturalistic corpus).
+	\begin{exe}
+		\ex {\textbf{That kind of straight-up statement} is exceedingly rare for a politician to
+			make.} \label{rare-tough}
+	\end{exe}
+	Since in our account \textit{rare} is expected to take its subject (\textit{that kind of straight-up statement}) as argument, the kind-restriction is now trivially accounted for, by simply assuming that the lexical entry of \textit{rare}-predicates imposes an additional type restriction on the \textsc{Reference} argument $r$. Therefore, our account may allow to unify the class of \textit{tough}-predicates.\\
+
+	\textit{Rude}-constructions (\ref{ex:rude-construction}) on the other hand, are missing-subject constructions which seem to be part of an alternation similar to that of TCs, featuring a fronted variant (\ref{ex:rude-construction-extracted}) and an \textit{it}-variant (\ref{ex:rude-construction-it}). But at the same time, the $\theta$-assignment pattern of those constructions seems closer to that of PCs.
+	\begin{exe}
+		\ex
+		\begin{xlist}
+			\ex[] {\textbf{Gabby} was rude to refuse Daiya's invitation. \hfill fronted-\textit{rude}\\
+			\textbf{$\leadsto$ Gabby was rude.}}\label{ex:rude-construction-extracted}
+			\ex[] {\textbf{It} was rude of Gabby \textbf{to refuse Daiya's invitation}. \hfill \textit{it}-\textit{rude}\\
+			\textbf{$\leadsto$ Gabby was rude.}}\label{ex:rude-construction-it}
+		\end{xlist}\label{ex:rude-construction}
+	\end{exe}
+	\begin{itemize}
+		\item The predicates at play in those constructions all denote mental qualities of proper (animate) individuals (\textit{rude}, \textit{brave}, \textit{nice} etc.).
+		\item Just like \textit{pretty}-predicates, \textit{rude}-predicates are interpreted relatively to the event denoted by the embedded clause, which is the drive of the \textit{rudeness} judgment. In (\ref{ex:rude-construction-extracted}) for instance, Gabby is not inherently \textit{rude}, but rather, judged to be so by the speaker in the context of his refusal of Daiya's invitation.
+		\item This implies that \textit{rude}-predicates take the embedded clause as \textsc{Reference} argument, and the matrix subject as \textsc{Theme}, just like \textit{pretty}-predicates.
+		\item The possibility of an \textit{it}-variant in \textit{rude}-constructions might be explained by an ability of \textit{rude}-constructions to ``swap'' the syntactic order of their arguments prior to \textit{it}-extraposition\footnote{A signature of this special operation is the presence of the original matrix subject (e.g. \textit{Gabby} in (\ref{ex:rude-construction-extracted})) within a demoted adjunct PP in the \textit{it}-variant, reminiscent of passive constructions \cite{Bennis2004}} -- a property that may be linked to the fact that those constructions are subject-gap constructions (as opposed to non-subject-gap TCs and PCs).
+		
+	\end{itemize}
+	 A tentative typology of the semantic and syntactic properties of \textit{tough}, \textit{rare}, \textit{pretty}, and \textit{rude} predicates can be found in Table \ref{tab:typology} below.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			Construction & \textsc{Theme} & \textsc{Reference} & Gap & \textit{it}-variant \\ \hline
+			\textit{tough}/\textit{rare} & infinitival clause & matrix subject & non-subject & \cmark \\
+			\textit{pretty} & matrix subject & infinitival clause & non-subject & \xmark \\
+			\textit{rude} & matrix subject & infinitival clause & subject & \cmark \\ \hline
+		\end{tabular}
+	\caption{A tentative typology of predicates with infinitival complements}
+	\label{tab:typology}
+	\end{table}
+	
+	 To summarize, our analysis has three main implications. 
+		\begin{enumerate}
+			\item unifies the semantics of \textit{tough} by proposing one single lexical entry suitable to both fTCs and iTCs (\textit{contra} \cite{Keine2017}).
+			\item integrates \textit{pretty} within a typology of predicates with infinitival complements, while providing an explanation of the ungrammaticality of iPCs.
+			\item brings new evidence in favor of a \textsc{Base-Generation} approach applied to all varieties of TCs, without the need of an \textit{ad hoc} $\theta$-transmission mechanism between the matrix subject and a bound null operator.
+		\end{enumerate}
+
+	
+
+	
+	
+	\iffalse
+	Alsop: brave predicates Mary is brave to tell the truth. John was rude to ask Mary about her thesis. Restriction of the judgement to the particular event. Just like pretty. Mary-telling-the-truth cause a brave jusgement about Mary.
+	\fi
+\newpage
+\bibliographystyle{apalike}
+\bibliography{bibliography}
+\newpage
+
+\section{Appendices}
+
+	\subsection{Additional support for \textit{tough} existentially quantifying over propositions}\label{app:tough-scope}
+	We show here that the existentially-quantified proposition introduced by the \textit{tough}-predicate may scopally interact with the modal \textit{want} in the following sentence
+	\footnote{This is heavily inspired by an example from \cite{Nissenbaum2011} (itself inspired from \cite{Heim2000}), whereby the following sentence is shown to have two readings:
+		\begin{exe}
+			\ex[] {John wants to be too rich for the monastery to hire him.}
+		\end{exe}
+		\begin{itemize}
+			\item Reading 1: John wants to be rich to a degree $d$ such that $d$ is too high for the monastery to hire John (\textit{want} $>$ \textit{too})
+			\item Reading 2: John wants to be rich to a degree $d$, and $d$ happens to be too high for the monastery to hire John (\textit{too} $>$ \textit{want})
+	\end{itemize}} (the \textit{tough}-predicate being \textit{impossible} here).
+	\begin{exe}
+		\ex[] {John wants to be impossible for Mary to include in her experiment.}\label{ex:tough-want}
+	\end{exe}
+	 If \textit{impossible} indeed involves some existentially-quantified proposition, we expect (\ref{ex:tough-want}) to have two possible readings:
+	\begin{itemize}
+		\item (\textit{want} $>$ \textit{impossible}): John wants to verify some property $P$ such that $P$ causes the \textit{Mary-including-John} event to be impossible.
+		\item (\textit{impossible} $>$ \textit{want}): there is a proposition $q$ such that some property $P$ of the \textit{John-wanting-to-verify-q} event causes the \textit{Mary-including-John} event to be impossible.
+	\end{itemize}
+	 We now argue that (\ref{ex:tough-want}) is compatible with the two following scenarios, which instantiate the (\textit{want} $>$ \textit{impossible}) reading and the (\textit{impossible} $>$ \textit{want}) reading respectively.
+
+		\begin{itemize}
+			\item \underline{\textbf{Background for both Scenarios}:} \textit{Mary wants to run a language learning experiment using Finnish as the target language. One exclusion criterion is that the participants should not be familiar with any Finnish words. John is a language nerd and a colleague of Mary who usually helps her as a guinea-pig in her pilots.}
+			\item \underline{\textbf{Scenario A}:} \textit{John got recently upset with Mary, and does not want to help her this time. He heard that the exclusion criterion is knowing some words of Finnish, so he starts learning Finnish basics for Mary not to include him.}
+			\item \underline{\textbf{Scenario B}:} \textit{As always, John is eager to help Mary, without even knowing the specifics of the experiment. However, John has been learning Finnish for quite a while now...}
+		\end{itemize}
+
+	\begin{itemize}
+		\item We think \textbf{Scenario A} is definitely compatible with (\ref{ex:tough-want}); \textbf{Scenario B} appears more borderline but still okay (comments about it are welcome!).
+		\item If indeed both Scenarios are allowed, we think that the scope interaction between \textit{tough} and \textit{want} could be accounted for by the following two Logical Forms:
+		\begin{figure}[H]
+			\centering
+			\begin{subfigure}{.45\linewidth}
+				\centering
+				\begin{forest}
+					[{$\langle st \rangle$}[{$\exists p_{\langle s t\rangle}$}][{$\langle \langle st \rangle \langle st \rangle \rangle$}[{$\lambda p_{\langle s t \rangle}$}] [{$\langle s t \rangle$}[{$\exists v_{\nu}$}] [{$\langle \nu \langle s t\rangle\rangle$}[{$\langle \nu \langle s t\rangle\rangle$}[{$e$}[{for John to want p}, roof]] [[{impossible j}, roof]]] [{$\langle \nu \langle s t\rangle\rangle$}[{for Mary to include John}, roof]]]]]]
+				\end{forest}\caption{(\textit{impossible} $>$ \textit{want} reading)}
+			\end{subfigure}\\
+			\begin{subfigure}{.45\linewidth}
+				\centering
+				\begin{forest}
+					[{$\langle s t \rangle$}[John] [{$\langle e \langle s t \rangle\rangle$}[wants] [{$\langle s t \rangle$}[{$\exists v_\nu$}][{$\langle \nu \langle s t \rangle \rangle$}[{$\langle \nu \langle s t \rangle \rangle$}[{John tough j}, roof]] [{$\langle \nu \langle s t \rangle \rangle$}[{for Mary to include John}, roof]]]] ]]
+				\end{forest}\caption{(\textit{want} $>$ \textit{tough}) reading}
+			\end{subfigure}
+		
+		\end{figure}
+	\end{itemize}
+	\subsection{A type-mismatch issue in the case of \textit{it}- and clause-fronted TCs}\label{app:type-mismatch}
+	 An issue that remains to be solved in the case of \textit{it}-TCs is the following: if \textit{it} refers to the embedded clause, then it is predicted to have type $\langle \nu \langle s t\rangle \rangle$, which is not a suitable type for the \textsc{Reference} argument (type $e$). The issue trivially extends to clause-fronted TCs.
+	 We present some evidence from French that the \textsc{Reference} in clause-fronted TCs is covertly converted to an $e$-type (through a process close, if not identical, to that posited in e.g. \cite{Fox2003})
+	 We additionally show that French iTCs exhibit overt signs of the same sort of conversion.
+	 We start with clause-fronted TCs. (\ref{ex:ov-nom-cf-tc}) is an alternative formulation of (\ref{ex:cov-nom-cf-tc}) where the fronted clause seems to be overtly converted to a type-$e$, as evidenced by the presence of a definite article. This is done through the addition of ``dummy'' layer \textit{fait de} (`the action'/`the act') which takes the original clause as a complement. Note that \textit{de} is the standard genitive marker in French.
+	\begin{exe}
+		\ex 
+		\begin{xlist}
+			\ex[] {\gll \textbf{Envoyer} \textbf{ce} \textbf{paquet} \textbf{à} \textbf{Lisa} est difficile.\\
+				To-send this package to Lisa is tough.\\
+				\glt To send this package to Lisa is tough.}\label{ex:cov-nom-cf-tc}
+			\ex[] {\gll \textbf{Le} \textbf{fait} \textbf{d'} \textbf{envoyer} \textbf{ce} \textbf{paquet} \textbf{à} \textbf{Lisa} est difficile.\\
+				The act DE to-send this package to Lisa is tough.\\
+				\glt To send this package to Lisa is tough.}\label{ex:ov-nom-cf-tc}
+		\end{xlist}
+	\end{exe}
+	 This datapoint may suggest that simple clause-fronted TCs contain a covert nominalizer akin to the overt \textit{le fait de}.
+	 Interestingly, the very same genitive marker \textit{de} is found in iTCs (\ref{ex:nom-it-tc}), and not in fTCs such as (\ref{ex:a-fronted-tc}) which feature a different particle, \textit{à} \cite{Huot1981,Guerin2006,AguilaMultner2022}.
+	\begin{exe}
+		\ex
+		\begin{xlist}
+			\ex[] {\gll \textbf{C'} est difficile \textbf{d'} \textbf{envoyer} \textbf{ce} \textbf{paquet} \textbf{à} \textbf{Lisa}.\\
+				This is tough DE to-send this package to Lisa.\\
+				\glt It is tough to send this package to Lisa.}\label{ex:nom-it-tc}
+			\ex[] {\gll \textbf{Ce} \textbf{paquet} est difficile \textbf{à} \textbf{envoyer} \textbf{à} \textbf{Lisa}.\\
+				This package is tough À to-send this package to Lisa.\\
+				\glt This package is tough to send to Lisa.}\label{ex:a-fronted-tc}
+		\end{xlist}
+	\end{exe}
+	 Left-dislocated clause-fronted TCs (\ref{ex:nom-ld-tc}) also make use of the marker \textit{de}.
+	\begin{exe}
+		\ex[] {\gll \textbf{D'} \textbf{envoyer} \textbf{ce} \textbf{paquet} \textbf{à} \textbf{Lisa}, \textbf{c'} est difficile.\\
+			DE to-send this package to Lisa, this is tough.\\
+			\glt It is tough to send this package to Lisa.}\label{ex:nom-ld-tc}
+	\end{exe}
+	 This might suggest that iTCs actually derive from  clause-fronted TCs featuring a \textit{le fait de} layer. \textit{It} would then result from the reduction of the stranded \textit{le fait}, as \textit{Le fait est difficile d'envoyer ce paquet à Lisa} is ungrammatical for some reason.\footnote{Surprisingly, the clefted counterpart \textit{Le fait \textbf{est qu'il} est difficile d'envoyer ce paquet à Lisa is fine}. I do not have any clear explanation for this contrast.}
+	 The upshot here is that the clausal \textsc{Reference} argument in clause-fronted TCs and iTCs is interpreted as a type-$e$ (or even more precisely, an event of type $\nu$) which ends up being equated with the event variable bound by the embedded clause, as shown in Figure \ref{fig:trace-conversion} below.
+	\begin{figure}[H]
+		\centering
+		\begin{forest}
+			[{$\langle s t \rangle$}[{$\exists v_\nu$}] [{$\langle \nu \langle s t \rangle\rangle$}[{$\langle \langle \nu \langle s t \rangle\rangle \langle \nu \langle s t \rangle\rangle\rangle$}[{$\langle \nu \langle s t \rangle\rangle$} [{$\langle \nu \langle s t \rangle\rangle$}[{$\langle \nu \langle s t \rangle\rangle$} [$\nu$ [{\begin{tabular}{c}
+				t$_i$\\(=\textit{\textbf{it}})
+			\end{tabular}}]] [{$\langle e \langle \nu \langle s t \rangle\rangle\rangle$} [tough j,roof]]] [{$\langle \nu \langle s t \rangle\rangle$} [{OP$_i$}, roof]]][{$\langle \nu \langle s t \rangle\rangle$} [{$\lambda v_\nu. \ t_i = v$}]]] [{$\lambda i_{\langle\nu\langle s t\rangle\rangle}$}]] [{$\langle \nu \langle s t \rangle\rangle$}[{\begin{tabular}{c}
+			to send this package to Lisa\\(=\textbf{extraposed clause})
+		\end{tabular}}, roof]]]]
+ 		\end{forest}
+		\caption{Solving the type-mismatch in iTCs through some ``trace conversion'' under a \textsc{Base-Generation} approach}\label{fig:trace-conversion}
+	\end{figure}
+	
+	 In addition to solving the initial type-mismatch problem, this account of French iTCs sheds light on the longstanding puzzle of the \textit{à}/\textit{de} alternation between fTCs and iTCs: we argue here that this alternation does not really exist, and that \textit{de} rather alternates with a zero-marker present in garden-variety clause-fronted TCs.
+
+
+\end{document}

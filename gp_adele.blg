@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: gp_adele.aux
+The style file: apalike.bst
+Database file #1: bibliography.bib
+I was expecting a `,' or a `}'---line 77 of file bibliography.bib
+ :  
+ :  address={Geneva},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I'm ignoring Chomsky1977's extra "publisher" field
+--line 162 of file bibliography.bib
+I was expecting a `,' or a `}'---line 589 of file bibliography.bib
+ :  
+ :  volume={8},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty note in Chomsky1964
+Warning--empty journal in Guerin2006
+Warning--empty publisher in Huot1981
+Warning--empty note in Kratzer2006
+Warning--empty note in Landau2006
+Warning--empty year in McCawley1971
+You've used 66 entries,
+            1935 wiz_defined-function locations,
+            923 strings with 12207 characters,
+and the built_in function-call counts, 24135 in all, are:
+= -- 2466
+> -- 624
+< -- 83
++ -- 196
+- -- 180
+* -- 1754
+:= -- 4129
+add.period$ -- 211
+call.type$ -- 66
+change.case$ -- 389
+chr.to.int$ -- 66
+cite$ -- 72
+duplicate$ -- 1105
+empty$ -- 1883
+format.name$ -- 264
+if$ -- 4927
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 65
+newline$ -- 327
+num.names$ -- 220
+pop$ -- 349
+preamble$ -- 1
+purify$ -- 407
+quote$ -- 0
+skip$ -- 886
+stack$ -- 0
+substring$ -- 1761
+swap$ -- 214
+text.length$ -- 18
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 374
+warning$ -- 6
+while$ -- 227
+width$ -- 0
+write$ -- 864
+(There were 2 error messages)
