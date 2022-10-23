@@ -9,7 +9,7 @@
 \contentsline {subsection}{\numberline {3.1}Basic assumptions about the semantics of infinitival clauses and \textit {tough}-predicates}{8}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Key observation: \textit {tough}-predicates are in need of a ``reference'' argument}{10}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Evidence \#1: pure dummies}{10}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Evidence \#2: ``intention''-inducing adverbs and aspect}{11}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2}Evidence \#2: ``purposive'' modification}{11}{subsubsection.3.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.3}Evidence \#3: idiom chunks}{11}{subsubsection.3.2.3}%
 \contentsline {subsubsection}{\numberline {3.2.4}Evidence \#4: varied fronting strategies}{11}{subsubsection.3.2.4}%
 \contentsline {subsection}{\numberline {3.3}Fleshing out \textit {tough}}{12}{subsection.3.3}%
@@ -19,8 +19,10 @@
 \contentsline {subsection}{\numberline {4.3}Extraposition as a potential solution to Bruening's puzzle}{19}{subsection.4.3}%
 \contentsline {subsection}{\numberline {4.4}iTCs have a clausal \textsc {Reference} argument}{21}{subsection.4.4}%
 \contentsline {section}{\numberline {5}Extension to PCs: a reversal in argument structure}{22}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Similarities and differences between \textit {pretty} and \textit {tough}}{22}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}\textit {Pretty}-predicates are properties of ``pure'' individuals, which explains *iPC}{23}{subsection.5.2}%
-\contentsline {section}{\numberline {6}Appendices}{30}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Additional support for \textit {tough} existentially quantifying over propositions}{30}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}A type-mismatch issue in the case of \textit {it}- and clause-fronted TCs}{31}{subsection.6.2}%
+\contentsline {subsection}{\numberline {5.1}\textit {Pretty}, \textit {tough}, and clausal embedding}{22}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Fleshing ou \textit {pretty}}{23}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}\textit {Pretty}-predicates' restricting their \textsc {Theme} argument explains their incompatibility with an \textit {it}-variant}{24}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Towards a typology of predicates with infinitival complements}{25}{section.6}%
+\contentsline {section}{\numberline {7}Appendices}{32}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Additional support for \textit {tough} existentially quantifying over propositions}{32}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}A type-mismatch issue in the case of \textit {it}- and clause-fronted TCs}{33}{subsection.7.2}%
